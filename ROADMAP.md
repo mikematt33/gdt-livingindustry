@@ -27,18 +27,21 @@ Shipped:
 
 Still to do before the foundation is called finished (**v0.1.x**):
 
-- **Slow the market to the player's timescale.** Right now a genre that is HOT when you conceive
-  a game is usually no longer hot when you release it a year later. Planned: a slow per-genre
-  cycle (each genre draws a new multi-year target level and reverts toward that instead of toward
-  neutral) so HOT/COLD become year-long plateaus you can plan around, with the fast layer at
-  roughly half strength.
-- Full-length balance pass on market, rivals, player influence and learn-by-doing so genre timing
-  matters without making game quality irrelevant.
-- Route all mod randomness through a seedable helper so later systems can be reproduced from a
-  seed.
-- Review rival news volume (roughly 17 items a year with 8 rivals) - possibly only rivals above a
-  reputation threshold make headlines.
-- In-game verification of everything shipped in 0.1.0 and any fixes that exposes.
+- ~~**Slow the market to the player's timescale.**~~ Done in 0.1.1: each genre draws a taste
+  target (in fashion / ordinary / out of fashion) and holds it for two to four years while demand
+  settles toward it over about six months; the Market Pulse arrow follows that target rather than
+  weekly momentum, and the fast layer (noise, release pushes) runs at half strength. In the probe
+  a genre that is HOT when you conceive a game is still hot a year later 70% of the time (was 13%).
+- ~~Route all mod randomness through a seedable helper.~~ Done in 0.1.1: every run has a seed
+  saved with it; market noise, taste shifts, the rival roster and rival releases all derive from
+  it and continue identically across save/load. Showing and sharing the seed is v0.5.0.
+- ~~Review rival news volume.~~ Done in 0.1.1: only studios with an average quality of 0.6 or
+  better make hit/flop headlines (roughly 6-9 items a year instead of ~17); every release still
+  moves the market and appears in the Market Pulse cause list.
+- Full-length in-game balance pass on market, rivals, player influence and learn-by-doing so
+  genre timing matters without making game quality irrelevant. The numbers above were tuned
+  against the simulation, not a played run.
+- In-game verification of everything shipped in 0.1.0 and 0.1.1, and any fixes that exposes.
 
 ---
 

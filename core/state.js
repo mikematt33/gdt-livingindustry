@@ -10,8 +10,10 @@
 	};
 	LivingIndustry.State.isFiniteNumber = isFiniteNumber;
 
+	// target/nextTargetWeek drive the slow taste cycle (market/market.js). nextTargetWeek 0 means
+	// "draw a target on the next tick", which is how a save predating the cycle joins it.
 	var defaultGenreState = function () {
-		return { demand: 1, momentum: 0, saturation: 0, recentCauses: [] };
+		return { demand: 1, momentum: 0, saturation: 0, target: 1, nextTargetWeek: 0, recentCauses: [] };
 	};
 
 	var defaultState = function () {
@@ -65,6 +67,11 @@
 			data.meta = fallback.meta;
 		if (!isFiniteNumber(data.meta.lastTickWeek))
 			data.meta.lastTickWeek = -1;
+		// Run seed + current position in its stream (core/rng.js); an older save simply starts one here.
+		if (!isFiniteNumber(data.meta.seed))
+			data.meta.seed = LivingIndustry.Rng.newSeed();
+		if (!isFiniteNumber(data.meta.rngState))
+			data.meta.rngState = data.meta.seed;
 		if (data.meta.hasOwnProperty('snapMarks') && typeof data.meta.snapMarks !== 'boolean')
 			delete data.meta.snapMarks; // unset -> re-seeded from the settings default on next use
 		if (data.meta.hasOwnProperty('tipsSeen') && !Array.isArray(data.meta.tipsSeen))

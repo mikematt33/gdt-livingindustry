@@ -5,14 +5,13 @@
 	var nameSuffixes = ['Forge', 'Circuit', 'Harbor', 'Peak', 'Grove', 'Works', 'Collective', 'Interactive', 'Studio', 'Labs'];
 
 	var randomBetween = function (min, max) {
-		return min + Math.random() * (max - min);
+		return LivingIndustry.Rng.between(min, max);
 	};
 
 	var randomName = function (usedNames) {
 		var name, attempts = 0;
 		do {
-			name = namePrefixes[Math.floor(Math.random() * namePrefixes.length)] + ' ' +
-				nameSuffixes[Math.floor(Math.random() * nameSuffixes.length)];
+			name = LivingIndustry.Rng.pick(namePrefixes) + ' ' + LivingIndustry.Rng.pick(nameSuffixes);
 			// Only 100 combinations exist; past a sane roster size, disambiguate instead of spinning.
 			if (++attempts > 200)
 				name += ' ' + attempts;
@@ -23,10 +22,7 @@
 
 	// 1 or 2 genres this studio favours, out of the 6 - used to weight (not lock) their releases.
 	var pickPreferredGenres = function () {
-		var shuffled = LivingIndustry.State.GENRE_IDS.slice().sort(function () {
-			return Math.random() - 0.5;
-		});
-		return shuffled.slice(0, 1 + Math.floor(Math.random() * 2));
+		return LivingIndustry.Rng.shuffle(LivingIndustry.State.GENRE_IDS).slice(0, 1 + LivingIndustry.Rng.int(2));
 	};
 
 	// Fills in a roster only if one doesn't already exist - covers both a fresh new game and an
@@ -58,20 +54,25 @@
 	};
 
 	var randomGenre = function () {
-		var all = LivingIndustry.State.GENRE_IDS;
-		return all[Math.floor(Math.random() * all.length)];
+		return LivingIndustry.Rng.pick(LivingIndustry.State.GENRE_IDS);
 	};
 
 	// 80% of the time picks one of the studio's preferred genres, otherwise any genre - so a
 	// studio has a clear identity without being fully locked to it.
 	var pickGenre = function (studio) {
 		var preferred = Array.isArray(studio.preferredGenres) ? studio.preferredGenres : [];
-		if (preferred.length > 0 && Math.random() < 0.8) {
-			var genreId = preferred[Math.floor(Math.random() * preferred.length)];
+		if (preferred.length > 0 && LivingIndustry.Rng.chance(0.8)) {
+			var genreId = LivingIndustry.Rng.pick(preferred);
 			if (LivingIndustry.State.GENRE_IDS.indexOf(genreId) >= 0)
 				return genreId;
 		}
 		return randomGenre();
+	};
+
+	// Only studios with a name for themselves make headlines; small shops still move the market,
+	// they just do it quietly (Market Pulse tooltips list them either way).
+	var isProminent = function (studio, average) {
+		return average >= LivingIndustry.CONFIG.rivals.newsMinQuality;
 	};
 
 	// Resolves one studio's release: rolls a quality result around the studio's average (spread by
@@ -83,7 +84,7 @@
 		var genreId = pickGenre(studio);
 		var average = LivingIndustry.State.isFiniteNumber(studio.quality) ? studio.quality : (cfg.qualityMin + cfg.qualityMax) / 2;
 		var risk = LivingIndustry.State.isFiniteNumber(studio.risk) ? studio.risk : cfg.riskMin;
-		var quality = (average + (Math.random() * 2 - 1) * risk).clamp(0, 1);
+		var quality = (average + (LivingIndustry.Rng.random() * 2 - 1) * risk).clamp(0, 1);
 
 		var outcome = quality >= cfg.hitThreshold ? 'hit' : (quality <= cfg.flopThreshold ? 'flop' : 'average');
 		var momentum = outcome === 'hit' ? cfg.hitMomentumBoost : (outcome === 'flop' ? -cfg.flopMomentumPenalty : 0);
@@ -95,10 +96,10 @@
 			cause: { type: 'rival_' + outcome, rivalId: studio.id, name: studio.name, quality: Number(quality.toFixed(2)) }
 		});
 
-		if (outcome === 'hit')
+		if (outcome === 'hit' && isProminent(studio, average))
 			LivingIndustry.News.announce(studio.name + ' scores a hit with a new ' + genreId +
 				' game, turning heads across the industry.');
-		else if (outcome === 'flop')
+		else if (outcome === 'flop' && isProminent(studio, average))
 			LivingIndustry.News.announce(studio.name + '\'s latest ' + genreId +
 				' release flops, denting confidence in the genre.');
 

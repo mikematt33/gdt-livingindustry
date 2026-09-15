@@ -10,15 +10,6 @@
 
 	// --- pure description (no DOM) -------------------------------------------------------------
 
-	var trendOf = function (momentum) {
-		var threshold = LivingIndustry.CONFIG.news.trendMomentum;
-		if (momentum >= threshold)
-			return 'rising';
-		if (momentum <= -threshold)
-			return 'falling';
-		return 'flat';
-	};
-
 	var zoneOf = function (demand) {
 		var cfg = LivingIndustry.CONFIG.news;
 		if (demand >= cfg.hotDemand)
@@ -48,6 +39,8 @@
 			var band = type.slice(7).replace('_', ' ');
 			label = 'Your ' + (band === 'average' ? 'release' : band) + (cause.title ? ': ' + cause.title : '') +
 				(LivingIndustry.State.isFiniteNumber(cause.score) ? ' (' + cause.score + ')' : '');
+		} else if (type === 'taste_shift') {
+			label = 'Audience tastes shifting ' + (cause.direction === 'down' ? 'away from' : 'toward') + ' the genre';
 		} else {
 			label = type.replace(/_/g, ' ');
 		}
@@ -66,13 +59,13 @@
 		var demand = LivingIndustry.State.isFiniteNumber(g.demand) ? g.demand : 1;
 		var momentum = LivingIndustry.State.isFiniteNumber(g.momentum) ? g.momentum : 0;
 		var saturation = LivingIndustry.State.isFiniteNumber(g.saturation) ? g.saturation : 0;
-		var trend = trendOf(momentum);
+		var trend = LivingIndustry.Market.trendOf(g);
 		var zone = zoneOf(demand);
 		var crowded = saturation >= LivingIndustry.CONFIG.ui.saturationWarn;
 		var causes = Array.isArray(g.recentCauses) ? g.recentCauses.slice(-LivingIndustry.CONFIG.ui.maxCausesShown).reverse() : [];
 		var lines = causes.map(LivingIndustry.MarketPulse.describeCause).filter(function (l) { return l; });
-		// Zone is the demand level, the arrow is momentum; spell out the two cases where they point
-		// opposite ways so "COLD ↗" reads as a recovery rather than a contradiction.
+		// Zone is the demand level, the arrow is where tastes are heading; spell out the two cases where
+		// they point opposite ways so "COLD ↗" reads as a recovery rather than a contradiction.
 		var note = zone === 'cold' && trend === 'rising' ? 'recovering' : (zone === 'hot' && trend === 'falling' ? 'cooling' : '');
 		return {
 			genreId: genreId,

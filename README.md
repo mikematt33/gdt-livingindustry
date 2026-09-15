@@ -1,6 +1,6 @@
 ### Game Dev Tycoon: Living Industry
 
-**Version 0.1.0**
+**Version 0.1.1**
 
 Living Industry makes the game market *move*. In vanilla Game Dev Tycoon the best topic/genre
 combination is always the best; here every genre has its own demand that rises and falls, rival
@@ -57,21 +57,23 @@ values that tick every in-game week:
 
 | Value | What it means for you |
 |---|---|
-| **Demand** | How much players want that genre right now. Neutral is 1. At or above 1.5 the genre is **HOT**, at or below 0.6 it is **COLD**. Demand drifts back toward neutral over time, so booms cool off and dead genres recover. |
-| **Momentum** | Which way demand is heading. Shown as the trend arrow (rising / flat / falling). |
+| **Demand** | How much players want that genre right now. Neutral is 1. At or above 1.5 the genre is **HOT**, at or below 0.6 it is **COLD**. Demand settles toward where audience tastes currently sit for that genre, so a boom that isn't backed by a real shift in tastes cools off and a dead genre recovers. |
+| **Tastes** | Where demand is heading over the coming months. Every few years each genre's audience shifts - a genre comes into fashion, goes out of fashion, or settles back to ordinary - and holds that for two to four years. Shown as the trend arrow (rising / flat / falling), so a genre that is HOT when you start a game is usually still hot when you ship it. |
+| **Momentum** | Short-lived pushes from recent releases and week-to-week noise. Fades over about three months. |
 | **Saturation** | How many games recently landed in that genre. A **crowded** genre grows more slowly. Fades over a few months. |
 
 **What moves it**
 
 - **Rival studios.** Every save generates its own roster of named competitors, each with a
   release cadence, a typical quality and a risk appetite. A rival hit lifts its genre's momentum,
-  a flop drags it down, and every rival release adds saturation.
+  a flop drags it down, and every rival release adds saturation. Only the better-known studios
+  make the news with their hits and flops; the small ones move the market quietly.
 - **You.** Every game you release adds saturation to its genre (larger games add more). Its
   review score decides the rest: 9+ is a breakout hit and pushes momentum up hard, 8+ is a hit,
   6-7.9 is average (saturation only), below 6 a flop, below 4 a major flop.
-- **Random drift** and the slow pull back toward neutral.
-- **New games start different.** Starting demand and momentum are randomised per genre, so the
-  first years of every run look different.
+- **Shifting tastes** every few years per genre, plus a little random drift.
+- **New games start different.** Every run has its own seed: starting tastes, demand and the
+  rival roster are drawn from it, so the first years of every run look different.
 
 **What it does to you**
 
@@ -160,7 +162,7 @@ menu, which applies at next launch).
   working.
 
 Something odd? Open devtools with `F12` and look for `[Living Industry]` lines in the console; the
-first should read `Living Industry v0.1.0 (state v3) loaded.`
+first should read `Living Industry v0.1.1 (state v4, seed N) loaded.`
 
 ---
 

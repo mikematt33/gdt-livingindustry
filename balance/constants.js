@@ -1,23 +1,39 @@
 (function () {
 	// Displayed mod version; keep in sync with package.json.
-	LivingIndustry.VERSION_LABEL = '0.1.0';
+	LivingIndustry.VERSION_LABEL = '0.1.1';
 	// Persisted state-shape version (not the mod version). Bump when the saved shape changes;
 	// see core/state.js ensureDefaults()/migrate(). v2: per-genre recentCauses. v3: sliderMemory.
-	LivingIndustry.VERSION = 3;
+	// v4: meta.seed/rngState, per-genre target/nextTargetWeek.
+	LivingIndustry.VERSION = 4;
 
 	LivingIndustry.CONFIG = {
 		debug: true, // set false before sharing a build
-		useRandomMarket: true, // false = deterministic drift only (base step + reversion), for hand verification
+		useRandomMarket: true, // false = deterministic drift only (base step + reversion, no taste shifts), for hand verification
 
+		// Two layers per genre. Slow: every cycleMin..cycleMax weeks a genre draws a new taste `target`
+		// and demand reverts toward it, so HOT/COLD are year-long plateaus a player can plan a game
+		// around. Fast: momentum (noise + release nudges) decaying over ~3 months rides on top.
 		market: {
 			demandMin: 0.3,
 			demandMax: 2.5,
 			momentumMin: -0.05,
 			momentumMax: 0.05,
 			baseMomentumStep: 0, // constant weekly nudge; 0 leaves movement to noise, releases and reversion
-			momentumRandomness: 0.02,
-			momentumDecayPerWeek: 0.1, // fraction of momentum lost each week, so release effects fade over ~10 weeks
-			demandReversion: 0.006, // momentum added per week per point of demand below/above neutral (1)
+			momentumRandomness: 0.002,
+			momentumDecayPerWeek: 0.08, // fraction of momentum lost each week (half-life ~8 weeks; a release's push fades over ~3 months)
+			demandReversion: 0.05, // fraction of the demand->target gap closed per week (about 3/4 of a shift lands within 6 months)
+
+			// A new taste target is drawn from one of these bands (weights are relative). The bands sit
+			// clear of news.hotDemand/coldDemand (1.5/0.6) so a plateau reads as HOT or COLD for its whole
+			// cycle instead of flickering across the threshold.
+			targetBands: [
+				{ weight: 0.15, min: 1.65, max: 1.95 }, // in fashion
+				{ weight: 0.7, min: 0.75, max: 1.35 }, // ordinary
+				{ weight: 0.15, min: 0.4, max: 0.5 } // out of fashion
+			],
+			cycleMinWeeks: 104, // weeks a target holds before the genre draws a new one (2-4 years, so a HOT genre at concept time is usually still hot at release)
+			cycleMaxWeeks: 208,
+			trendGap: 0.1, // |target - demand| at/above this shows as a rising/falling arrow (Market Pulse, trend news)
 
 			// Saturation decays toward 0 and dampens momentum; rivals/rivals.js bumps it on every rival
 			// release, and momentum on hits/flops.
@@ -26,10 +42,10 @@
 			saturationDecayPerWeek: 0.05, // fraction of current saturation lost each week (half-life ~14 weeks)
 			saturationMomentumDamping: 0.15, // fraction of positive momentum drift cancelled per point of saturation
 
-			// Max random offset applied to each genre's demand/momentum on a new game only (see
-			// Market.randomizeStart), so every run starts with a different genre landscape.
-			startDemandVariance: 0.4,
-			startMomentumVariance: 0.02,
+			// New game only (see Market.randomizeStart): each genre draws a target, starts within this
+			// offset of it, and gets its own cycle phase, so every run starts with a different landscape.
+			startDemandVariance: 0.3,
+			startMomentumVariance: 0.01,
 
 			// Each genre keeps a short structured log of what moved it (see Market.applyRelease), for
 			// the future Market Pulse tooltips/timeline. Oldest entries are dropped past this cap.
@@ -53,11 +69,11 @@
 			hitScore: 8, // score >= this: hit
 			flopScore: 6, // score < this: flop (6.0-7.9 is average)
 			majorFlopScore: 4, // score < this: major flop
-			breakoutMomentum: 0.04,
-			hitMomentum: 0.02,
+			breakoutMomentum: 0.02,
+			hitMomentum: 0.01,
 			averageMomentum: 0, // 6.0-7.9 releases only add saturation
-			flopMomentum: -0.02,
-			majorFlopMomentum: -0.04,
+			flopMomentum: -0.01,
+			majorFlopMomentum: -0.02,
 			releaseSaturationBump: 0.2, // base saturation added per player release, before size scaling
 			saturationBySize: { small: 0.75, medium: 1, large: 1.25, aaa: 1.5 }, // unknown size uses 1
 			saturationBumpMax: 0.5 // hard cap on a single release's saturation contribution
@@ -70,7 +86,7 @@
 		news: {
 			hotDemand: 1.5,
 			coldDemand: 0.6,
-			trendMomentum: 0.01, // |momentum| below this counts as flat, so tiny wobbles around 0 aren't "reversals"
+			trendMomentum: 0.01, // fallback trend threshold on |momentum| when a genre has no taste target (partial state)
 			genreCooldownWeeks: 12 // min weeks between trend/zone news items about the same genre
 		},
 
@@ -86,9 +102,10 @@
 			riskMax: 0.9,
 			hitThreshold: 0.75, // rolled quality at/above this counts as a hit
 			flopThreshold: 0.35, // rolled quality at/below this counts as a flop
-			hitMomentumBoost: 0.02,
-			flopMomentumPenalty: 0.02,
-			releaseSaturationBump: 0.15 // added to the genre's saturation on every rival release, hit or flop
+			hitMomentumBoost: 0.006,
+			flopMomentumPenalty: 0.006,
+			releaseSaturationBump: 0.15, // added to the genre's saturation on every rival release, hit or flop
+			newsMinQuality: 0.6 // only studios whose average quality is at/above this make hit/flop headlines
 		},
 
 		// integration/learning.js: staff pick up skill points while producing work ("learn by doing").

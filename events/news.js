@@ -7,15 +7,6 @@
 	var lastZone = {};
 	var lastAnnouncedWeek = {};
 
-	var direction = function (momentum) {
-		var threshold = LivingIndustry.CONFIG.news.trendMomentum;
-		if (momentum >= threshold)
-			return 'rising';
-		if (momentum <= -threshold)
-			return 'falling';
-		return 'flat';
-	};
-
 	var zoneOf = function (demand) {
 		var cfg = LivingIndustry.CONFIG.news;
 		if (demand >= cfg.hotDemand)
@@ -72,12 +63,13 @@
 		announce(text);
 	};
 
-	// Reports a genre's demand trend reversing (rising <-> falling; passing through flat first
-	// still counts as a reversal once the new direction is established). Off by default since the
-	// Market Pulse panel shows the arrow; the direction is still tracked so enabling it mid-game
-	// doesn't announce a stale change.
+	// Reports a genre's long-term trend reversing (rising <-> falling; passing through flat first
+	// still counts as a reversal once the new direction is established). The trend follows the slow
+	// taste layer (Market.trendOf), so this fires on real shifts, not weekly wobble. Off by default
+	// since the Market Pulse panel shows the arrow; the direction is still tracked so enabling it
+	// mid-game doesn't announce a stale change.
 	var checkDirectionFlip = function (genreId, genreState) {
-		var dir = direction(genreState.momentum);
+		var dir = LivingIndustry.Market.trendOf(genreState);
 		var prev = lastDirection[genreId];
 		if (dir === 'flat')
 			return;

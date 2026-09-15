@@ -22,8 +22,8 @@ var LivingIndustry = {};
 				LivingIndustry.error('[Living Industry] ' + modules[i] + ' init failed.', e);
 			}
 		}
-		LivingIndustry.log('Living Industry v' + LivingIndustry.VERSION_LABEL + ' (state v' + LivingIndustry.VERSION + ') loaded. ' +
-			LivingIndustry.Market.getDebugSummary());
+		LivingIndustry.log('Living Industry v' + LivingIndustry.VERSION_LABEL + ' (state v' + LivingIndustry.VERSION + ', seed ' +
+			LivingIndustry.Rng.seed() + ') loaded. ' + LivingIndustry.Market.getDebugSummary());
 	};
 
 	var error = function () {
@@ -34,6 +34,7 @@ var LivingIndustry = {};
 	GDT.loadJs([
 		LivingIndustry.path + '/balance/constants.js',
 		LivingIndustry.path + '/core/state.js',
+		LivingIndustry.path + '/core/rng.js',
 		LivingIndustry.path + '/core/settings.js',
 		LivingIndustry.path + '/core/persistence.js',
 		LivingIndustry.path + '/market/market.js',
