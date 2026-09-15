@@ -1,0 +1,8 @@
+{
+	"id": "gdt-livingindustry",
+	"name": "Game Dev Tycoon: Living Industry",
+	"version": "0.1.0",
+	"author": "mikematt33",
+	"description": "A living market that rises, falls and reacts to you and rival studios, plus a new title menu, quality-of-life features and optional assists. Every save writes its own industry history.",
+	"main": "./main.js"
+}
