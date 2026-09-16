@@ -170,7 +170,7 @@
 			assistsEnabled: true,
 			focusSliderMarks: true, // ui/focusPercent.js: +++/++/-/--/--- marks along each slider (hint mark highlighted)
 			focusSnapMarks: true, // default for a new run's "Snap to marks" toggle (the run's own state lives in save meta.snapMarks)
-			focusSnapControls: true, // ui/focusPercent.js: "Snap to hints" button in that dialog (the "Snap to marks" toggle comes with focusSliderMarks)
+			focusSnapControls: false, // ui/focusPercent.js: "Snap to hints" button in that dialog; off by default - it solves the sliders for you (the "Snap to marks" toggle comes with focusSliderMarks)
 			focusSnapAuto: false, // snap sliders to the +++/++/--/--- hints every time the dialog opens
 			rememberSliders: true, // ui/focusPercent.js: restore the last slider values used for the same topic/genre combo
 			reviewPreview: true, // ui/releasePreview.js: slider-rule check badge on the "game is ready" screen

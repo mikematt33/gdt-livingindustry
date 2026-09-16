@@ -32,7 +32,7 @@
 		{ key: 'focusSnapMarks', kind: 'checkbox', label: 'Snap to marks on by default',
 			hint: 'Starting state of the "Snap to marks" toggle for each new run (the toggle in the Development Stage window changes only the current save).' },
 		{ key: 'focusSnapControls', kind: 'checkbox', label: '"Snap to hints" button in the Development Stage window',
-			hint: 'One click sets +++/++ sliders to at least 40% and --/--- to the minimum, per the game\'s review rules. The strongest assist - leave off if you want to work the sliders out yourself.' },
+			hint: 'One click sets +++/++ sliders to at least 40% and --/--- to the minimum, per the game\'s review rules. The strongest assist, so it is off by default - turn it on only if you would rather not work the sliders out yourself.' },
 		{ key: 'focusSnapAuto', kind: 'checkbox', label: 'Auto-snap to hints when a stage opens',
 			hint: 'Applies "Snap to hints" automatically every time a Development Stage window opens.' },
 		{ key: 'rememberSliders', kind: 'checkbox', label: 'Remember sliders per topic/genre',

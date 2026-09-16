@@ -134,7 +134,7 @@ your individual choices are kept), with a toggle each:
 - **Snap to hints** - a button that sets every slider from its hint according to the game's review
   rules (`+++`/`++` to at least 40%, `--`/`---` to the minimum). Only works on features you
   already have hints for. **Auto-snap** applies it every time a stage opens. This is the strongest
-  assist.
+  assist, so both are off by default.
 - **Remember sliders** - each stage reopens with the values you last used for the same
   topic + genre combination (stored in the save).
 - **Slider check on the "is ready!" screen** - a `Slider hints: 4 ✓ met · 1 ✗ broken` line
