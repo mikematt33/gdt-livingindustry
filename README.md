@@ -170,9 +170,10 @@ first should read `Living Industry v0.1.1 (state v4, seed N) loaded.`
 
 v0.1.x tunes the market to the game's development cycle (hot genres should stay hot long enough
 to plan a game around) and runs a full-length balance pass. After that comes the roguelite
-layer: **Studio Traits** that build up your company's identity, drafted **Industry
-Opportunities**, and optional per-game **Project Gambits**, with era modifiers and deeper rivals
-later. The full plan, version by version, is in [ROADMAP.md](./ROADMAP.md).
+layer: **Studio Traits** that build up your company's identity, seeded **Industry Conditions**
+that make each run structurally different, optional per-game **Project Gambits** and drafted
+**Industry Opportunities**, then rivals that react to your build and a run timeline. The full
+plan, version by version, is in [ROADMAP.md](./ROADMAP.md).
 
 ---
 
