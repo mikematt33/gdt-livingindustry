@@ -1,213 +1,343 @@
-### Living Industry — Roadmap
+# Living Industry - Roadmap
 
-Where the mod is and where it is going. Versions are planning buckets, not promises: a feature moves
-when the systems it depends on are ready, and nothing gets bundled into a release just to fill a
-version number.
+Where the mod is and where it is going. Versions are planning buckets, not promises. Features move when their dependencies are ready, and a small system that creates good decisions earns its expansion. Everything below — scope, order, version numbers, and names — is a current best guess and subject to change as design and playtesting reveal new information.
 
-The guiding idea throughout: **every company becomes a build, and every save creates its own
-industry history.** A run should create stories the player did not plan.
+The foundation is shipped as described below. Everything after v0.1.x is planned.
 
-v0.1 answers *"how can the world be different every time?"* The next stretch has one design goal:
+## The vision
 
-> **The same market situation should produce a different correct decision depending on the company
-> you have built.**
+**Every company becomes a build. Every industry develops a cast of characters. Every save creates its own history.**
 
-So the versions after v0.1.x focus on making the *player's company* dynamic before widening the
-world again. The order is: studio builds, then run conditions, then repeated risk/reward decisions,
-then rivals that react to the build, then the history that records all of it.
+Living Industry should make Game Dev Tycoon exciting to return to after the player understands the base game. Each run should offer different strengths, pressures, opportunities, competitors, and reasons to change direction.
 
----
+Two questions guide the design:
 
-#### Where we are: v0.1.0 — Living Industry foundation
+> What is the best move for this studio, in this industry, right now?
+>
+> What happened in this run that makes me want to tell someone about it?
 
-Shipped:
+A successful run might become the story of a small studio that revived an abandoned genre, an experimental company that accidentally started a trend, or a prestige developer whose fiercest competitor refused to admit defeat.
 
-- A living market: per-genre demand, momentum and saturation that tick weekly, drift, boom, cool
-  off and recover. Hot genres sell up to +15%, cold ones down to -15%.
-- Generated rival studios whose hits and flops move the market; your own releases move it too,
-  based on review score and game size.
-- Market Pulse panel, market line in the Game Concept dialog, and non-blocking industry news.
-- A title menu with Continue / New / Load / Settings / Mods / High Score / Achievements / Help /
-  Quit that scales to the window.
-- Quality of life (dev progress, time-allocation percentages, instant reviews, Quiet mode) and
-  optional assists (slider marks, snap to hints, remembered sliders, release slider check, learn by
-  doing) behind one master switch.
-- A short opt-in tutorial, and a Settings > Living Industry tab for all of the above.
+## The core loop
 
-Still to do before the foundation is called finished (**v0.1.x**):
+1. Read the market and recognize an opportunity or threat.
+2. Choose a project that fits the company's strengths, ambitions, and available resources.
+3. Optionally make a project gambit or accept a meaningful commitment.
+4. Release the game and see its commercial, creative, and industry consequences.
+5. Develop the studio through limited trait drafts and occasional defining choices.
+6. Respond as competitors act, conditions change, and earlier decisions return in new forms.
 
-- ~~**Slow the market to the player's timescale.**~~ Done in 0.1.1: each genre draws a taste
-  target (in fashion / ordinary / out of fashion) and holds it for two to four years while demand
-  settles toward it over about six months; the Market Pulse arrow follows that target rather than
-  weekly momentum, and the fast layer (noise, release pushes) runs at half strength. In the probe
-  a genre that is HOT when you conceive a game is still hot a year later 70% of the time (was 13%).
-- ~~Route all mod randomness through a seedable helper.~~ Done in 0.1.1: every run has a seed
-  saved with it; market noise, taste shifts, the rival roster and rival releases all derive from
-  it and continue identically across save/load. Showing and sharing the seed is v0.5.0.
-- ~~Review rival news volume.~~ Done in 0.1.1: only studios with an average quality of 0.6 or
-  better make hit/flop headlines (roughly 6-9 items a year instead of ~17); every release still
-  moves the market and appears in the Market Pulse cause list.
-- Full-length in-game balance pass on market, rivals, player influence and learn-by-doing so
-  genre timing matters without making game quality irrelevant. The numbers above were tuned
-  against the simulation, not a played run.
-- In-game verification of everything shipped in 0.1.0 and 0.1.1, and any fixes that exposes.
+Roguelike elements provide adaptation, commitment, and powerful combinations. A recognizable strategy can remain satisfying throughout a run; later runs should offer different paths to success. The normal campaign remains the main experience, with shorter scenarios considered only once the core loop is proven.
 
 ---
 
-#### v0.2.0 — Studio Builds
+## v0.1.x - Finish the living industry foundation
 
-The backbone of the mod: **Studio Traits**, the company's persistent build.
+### Shipped in v0.1.0
 
-- Traits are offered at meaningful milestones (not every few minutes), usually three choices,
-  take one. Soft cap of 4-6 active traits; traits can be replaced, transformed or evolved so the
-  build can change over a long run.
-- The test for every trait: **does it make the player want to behave differently?** A trait is a
-  condition, trade-off or synergy - never "+5% speed" or "+10% RPG sales" (those are upgrades,
-  not traits). Two players looking at the same market should not necessarily make the same game.
-  Candidates: *Cult Following* (COLD/niche genres build disproportionately loyal fans, HOT genres
-  give you less), *Trend Chaser* (stronger launching into a rising genre, hit much harder by
-  reversals and saturation), *Perfectionists* (long projects reach exceptional quality more often,
-  rushed ones suffer extra), *Experimental Studio* (unusual topic/genre combos rewarded, safe ones
-  slightly weaker), *Sequel Machine*, *Genre Loyalists*, *Creative Chaos*, *No Crunch* / *Crunch
-  Culture*.
-- Every trait carries internal **tags** - Prestige, Experimental, Commercial, Efficient, Trend,
-  Niche, Community, Technology, Risk. The player need not see them at first; they exist so later
-  systems can react to the build (a condition that favours Niche studios, a rival that dislikes
-  Commercial ones, a gambit that is stronger for Prestige builds, an opportunity with an extra
-  option for Experimental studios).
-- **Studio Doctrine** (emerging, not chosen): the identity panel reads the dominant tag pair off
-  the drafted traits and names it - *Auteur Studio* (Prestige/Experimental), *Market Machine*
-  (Commercial/Trend), *Niche Specialist* (Community/Niche), *Technical Pioneer*
-  (Technology/Experimental), *Production House* (Efficient/Commercial). In 0.2.0 this is a label
-  the player earns by drafting; doctrine-specific trait pools and unlocks come once the base pool
-  is proven.
-- The draft trigger is generic: milestones drive it in 0.2.0, and the same path carries the
-  first one or two **Defining Moments** (see 0.5.0) so the mechanism is exercised early.
-- Every effect is visible in a tooltip or on the **Studio Identity** panel.
-- Smallest convincing scope: **about 12 genuinely distinct traits** (not 18 unless the first 12
-  are all pulling their weight), tags, synergies/anti-synergies, the milestone draft, the identity
-  panel with the doctrine label.
+- A living market: genre demand, momentum, and saturation change weekly. Hot genres sell up to +15%; cold genres down to -15%.
+- Generated rival studios whose hits and flops move the market. Player releases influence it too, based on review score and game size.
+- Market Pulse, a market line in the Game Concept dialog, and non-blocking industry news.
+- A window-scaled title menu with Continue, New, Load, Settings, Mods, High Score, Achievements, Help, and Quit.
+- Quality of life (development progress, time-allocation percentages, instant reviews, Quiet mode) and optional assists (slider marks, snap to hints, remembered sliders, release slider checks, learn-by-doing) behind one master switch.
+- A short opt-in tutorial and a Settings > Living Industry tab.
 
-Done when a player can describe their studio using its traits and at least three meaningfully
-different synergies are viable.
+### Completed in v0.1.1
 
-#### v0.2.5 — Industry Conditions
+- **Slower market changes.** Each genre holds a taste target for two to four years, with demand settling toward it over about six months. Market Pulse arrows follow that target; the faster noise and release effects run at half strength.
+- **Seeded mod randomness.** Market noise, taste shifts, the rival roster, and rival releases derive from a saved run seed and continue consistently across save/load.
+- **Quieter rival news.** Hit/flop headlines are limited to studios with average quality of at least 0.6. Every release still affects the market and appears in the cause list.
 
-Pulled forward from Run Structure because it is the cheapest way to make each run structurally
-different, and the taste cycle already gives it a seeded, weekly-ticking foundation.
+The simulation probe showed that a genre hot at conception remained hot a year later about 70% of the time, compared with 13% previously. Headline volume fell to roughly 6–9 items per year from about 17. These are simulation findings, not results from a completed played campaign.
 
-- At run start and at major era transitions the industry receives a **rule modifier**, not a
-  demand bump (the market already does that). Six to eight **loud** conditions beat thirty subtle
-  ones.
-- Conditions are seeded multipliers over values the mod already has - taste-cycle length,
-  saturation strength, size-scaled player influence, review-band influence, the sales-modifier
-  band, rival risk appetite - so the first pool needs no new systems. Candidates that fit now:
-  **Indie Boom** (small games move the market far more; small studios become prominent),
-  **Review Culture** (review score has more say over market momentum and sales), **Blockbuster
-  Economy** (large/AAA games have far bigger upside and downside), **Genre Fragmentation** (tastes
-  turn over fast; a volatile market), **Experimental Era** (rivals take more risks; unusual
-  combinations are tolerated), **Economic Downturn** (the sales band tilts negative; budgets bite),
-  plus genre-flavoured ones like **RPG Renaissance** / **Arcade Fever** as taste-band weights.
-- Conditions that need later systems wait for them: *Sequel Mania* and *Long Tail Era* (0.6/0.7),
-  *Publisher Consolidation* (0.8).
-- Brief, polished transition when a condition changes; the current one is always readable from
-  the Market Pulse header and the identity panel.
-- Because conditions are seeded, a run can be described as a sequence - *Indie Boom → RPG
-  Renaissance → Economic Downturn* - which is what makes shared seeds (0.5.0) worth sharing.
+### Still required
 
-#### v0.3.0 — Gambits & Opportunities
+- A full-length in-game balance pass covering the market, rivals, player influence, and learn-by-doing.
+- In-game verification of everything shipped in v0.1.0 and v0.1.1, followed by fixes.
+- Confirmation that market timing matters while game quality and the vanilla progression remain important.
 
-Repeated risk/reward decisions that give the player something to *do* with the build.
-
-- **Project Gambits**: an optional per-game bet made in the Game Concept dialog - Safe
-  Production (no effects), Rush Development, Experimental Design, Prestige Project, Trend Chase,
-  Focused Scope - each a legible trade recorded on the finished game's history. Ordinary games
-  stay ordinary: the gambit is a non-interrupting button, and **eligibility varies with the run**
-  (Trend Chase only while the genre is rising, Prestige only after an 8+ release) rather than the
-  prompt being rolled randomly. Traits modify gambits - *Perfectionists + Prestige Project*,
-  *Trend Chaser + Rush*, *Experimental Studio + Experimental Design* - which is where build
-  synergies become visible.
-- **Industry Opportunities**: lightweight encounters with 2-3 concise options and visible costs
-  (*a rival producer wants out*: hire them / recruit their team, rival turns hostile / pass;
-  *a publisher wants your next RPG*: accept / renegotiate / self-publish for Prestige). Every
-  opportunity is generated from **simulation state** - a rival really is struggling, a genre really
-  is rising, your cash really is low, your traits really are Prestige-tagged - never from a
-  generic event table. Unobtrusive indicator; the player opens it when convenient.
-- Smallest convincing scope: 5-6 gambits with eligibility rules and trait interactions, the card
-  system, about 10 state-driven opportunities.
-
-#### v0.4.0 — Rivalries
-
-Rivals become persistent characters that respond to the ecosystem, not market generators.
-
-- Rival profiles: name, archetype, reputation, preferred genres, risk tendency, current or
-  rumoured project, recent hits/flops, signature franchises.
-- Rivals grow and decline; breakout hits and major flops get a short presentation, routine
-  releases stay quiet.
-- Rivals react to the player's build and results: a high-risk studio copies your three successful
-  strategy games, fails, pivots to Simulation, lands a hit there years later, and resents you
-  entering its new genre. A rival may dislike Commercial studios or court Prestige ones (tags).
-- **Rivalry is emergent, not a meter.** No "Rivalry 73/100"; any relationship the UI shows
-  describes something that already happened in the simulation. The player's story should be
-  "NovaWorks copied my strategy games, failed, reinvented themselves and now dominate simulations".
-
-#### v0.5.0 — Industry History
-
-- **Run timeline**: the compact history of this company and this industry - booms, busts,
-  conditions, rival moments, trait picks, doctrine, gambits, famous games - readable at any time
-  and at the end of a run.
-- **Defining Moments**: rare (5-10 per full run) events keyed to what actually happened - your
-  first 10/10 (*Overnight Sensation*: embrace the fans / chase the spotlight / stay focused), a
-  near-bankruptcy (*On the Brink*: a scar-like trait), a rival's collapse - each permanently marks
-  the run and the timeline.
-- **Doctrine unlocks**: doctrine-specific trait pools, gambits, opportunities and rival responses,
-  now that the base pool has been played.
-- Seeded starts you can share, shown with the run's condition sequence.
+**Done when:** the foundation works through a played campaign and the player can understand its meaningful effects.
 
 ---
 
-#### Expansion toward 1.0
+## v0.2.0 - Studio Traits
 
-| Version | Theme |
-|---|---|
-| v0.6.0 | **Legacy** - franchises, sequels, fanbases, prestige, fatigue, rival IP |
-| v0.7.0 | **After Launch** - patches, ports, expansions, DLC, remasters, long-tail support |
-| v0.8.0 | **Studio & Publishing** - culture, deals, contracts, funding, acquisitions |
-| v0.9.0 | **Console Wars** - platform audiences, support, exclusivity, dynamic competition |
-| v1.0.0 | **Living Industry** - integrated balance, polished UI, compatibility, scenarios, full history |
+Give the player a persistent build: a first, self-contained step before Industry Conditions and the identity UI layer on top of it.
 
-These wait until the roguelite loop (0.2-0.5) is proven, and each is held to the Expansion Rule
-below. DLC, ports, patches and remasters in particular can add a lot of clicking without adding
-depth: a remaster is interesting when franchise strength, a nostalgia condition, the platform's
-audience and a studio trait together decide whether it is a smart move; "spend $2M, receive $5M"
-is just another button. The same applies to acquisitions, contracts and exclusives.
+**Builds on:** the stable v0.1.x market — traits need a market worth reacting to before they're worth choosing.
 
-#### Beyond 1.0 (directions, not plans)
+- The first trait draft follows the first completed game. Further drafts arrive at meaningful milestones.
+- Usually offer three traits and choose one. Offers are seeded, with some influenced by company history and some leaving room for a new direction.
+- Begin with three active trait slots for the initial pool. Expand toward 4–6 only as the pool grows enough to preserve distinct builds. Replacement or evolution happens at clear milestones, with any transition cost shown beforehand.
+- Traits change priorities, constraints, or opportunities. Numerical effects are welcome when they produce a meaningful decision.
+- Strong combinations should feel powerful. Their costs and limitations should remain relevant.
 
-Community and reputation; engine and technology competition; online games and distribution
-changes; audience segments and global markets; deeper alternate-history simulation; an optional
-Platform Holder endgame; an extension API for other mods.
+Initial candidates:
+
+- **Counterprogrammers:** well-received games gain an advantage in genres with little recent competition. This responds to saturation, so an overlooked opening can matter even when another genre is hotter.
+- **Trend Chaser:** stronger gains from entering rising genres, with greater exposure when the opportunity fades.
+- **Perfectionists:** an optional, costly polish commitment creates greater potential for an exceptional release. The studio must finance the extra time.
+- **Experimental Studio:** respectable releases using combinations absent from the studio's recent history produce extra learning or research. Repeating an experiment eventually makes it familiar.
+- **Genre Loyalists:** sustained, successful work in a genre builds a specialization that the player weighs against opportunities elsewhere. Changing direction remains possible.
+- **Prototype Culture:** a successful small project can prepare the studio for a larger project in the same genre. Preparation is limited and consumed, giving small releases a role in an ambitious portfolio.
+
+Start with 6–8 distinct traits. Expand toward 12 after playtesting shows that the initial choices support different companies. Each effect must be checked against the base game's review, research, and progression systems before joining the pool.
+
+Traits carry internal tags such as Prestige, Experimental, Commercial, Efficient, Trend, Niche, Community, and Technology. Later systems (Industry Conditions, Opportunities, Gambits, Rivalries) recognize a build through these tags rather than reading traits directly.
+
+**Done when:** at least three distinct trait-based studio approaches are viable and a player can describe their build using its traits.
 
 ---
 
-#### Principles that decide what gets in
+## v0.2.1 - Industry Conditions
 
-1. **Interconnection over feature count** - every major feature must interact with at least two
-   existing systems.
-2. **Decisions over passive bonuses** - a feature should make you reconsider what to do, not make a
-   number bigger. For traits specifically: would the player behave differently with it?
-3. **Readable simulation** - you should understand the important causes without seeing every
-   hidden calculation.
-4. **Bounded effects** - one roll can redirect a run, never win or lose it outright.
-5. **Preserve the vanilla core** - enhance game creation, growth, research and progression rather
-   than replace them.
-6. **Earn interruptions** - only decisions and truly major moments stop play.
-7. **Start with the smallest fun version** - a system proves itself before getting deeper AI,
-   content or presentation.
-8. **Protect the market from becoming the new optimum.** "HOT → make that genre → profit" is
-   better than vanilla's static best combo, but it is still an optimum if HOT is strong and
-   predictable. Every later system should make demand one consideration among several: does the
-   genre fit my build, is it saturating, is a rival about to land there, does the current condition
-   favour small games, do I have a gambit that makes another project attractive, can I ship before
-   the trend turns. The question should shift from "what is the best game?" to "what is the best
-   move for *this* studio, in *this* industry, right now?"
+Make each run structurally different, on top of whatever traits the studio has drafted.
+
+**Builds on:** the v0.1.x market directly. Reads Studio Trait tags once v0.2.0 traits exist, but a condition's own rules don't require a trait to exist first.
+
+One clearly displayed condition changes the rules of the current era. Show the starting condition before play and signal major transitions early enough to influence project planning.
+
+Initial candidates:
+
+- **Indie Boom:** smaller releases have greater market influence, giving small studios more opportunity to shape the industry.
+- **Review Culture:** review quality has a stronger effect on market influence and commercial results.
+- **Crowded Shelves:** release-driven saturation lasts longer, making repeated entry into busy genres more costly.
+- **Blockbuster Economy - later eras:** large releases have more pronounced upside and downside, increasing the importance of commitment and financial reserves.
+
+Ship three starting conditions first. Starting conditions must affect decisions available to an early studio; introduce Blockbuster Economy when larger projects become available. Conditions should last long enough for several meaningful project decisions. Genre-specific booms such as an RPG Renaissance remain market developments that can occur within these conditions.
+
+**Done when:** a run's starting condition visibly changes which early decisions make sense, without needing a tooltip to notice it.
+
+---
+
+## v0.2.2 - Studio Identity & Feedback
+
+Tie traits and conditions together into something the player can see and recognize as their build.
+
+**Builds on:** v0.2.0 Studio Traits and v0.2.1 Industry Conditions directly — this version has nothing new to show without them.
+
+- A Studio Identity panel explains active traits, relevant conditions, and their effects.
+- An emerging doctrine names the dominant direction: Auteur Studio, Market Machine, Niche Specialist, or Technical Pioneer. At first it only describes the build; it does not require a separate progression system.
+- Begin recording significant choices and their causes for the future timeline (this pays off in full at v0.5.0).
+- Add a compact explanation of the mod's major contributions to a release result. Show measured effects; distinguish uncertain forecasts from known outcomes.
+- Prototype two gambits alongside the traits — Focused Scope and Prestige Project — to test interactions before expanding the pool in v0.3.0.
+
+**Done when:** different trait/condition combinations produce recognizably different opening plans, and the identity panel matches what a player would already say about their studio.
+
+---
+
+## v0.2.5 - People With Motives
+
+Give the industry a small recurring cast whose decisions reflect their personalities and histories.
+
+**Builds on:** the v0.1.x rival roster — founders are layered onto studios that already exist — and loosely on v0.2.0's trait tags, since a founder's personality is designed to reinforce or push against the player's own build.
+
+### Rival founders
+
+Start with one named founder for each of a small set of prominent rivals. A founder has:
+
+- **A motive:** recognition, growth, independence, or creative discovery.
+- **An approach:** cautious, stubborn, opportunistic, or experimental.
+- **A current ambition:** reclaim a genre, recover from failure, establish a specialty, or pursue a breakout hit.
+- **A few significant memories:** a defining success, a costly failure, or a competitor that repeatedly challenged them.
+
+Studio traits describe how a company operates. Founder personalities describe what a person values and how they pursue it. The two can reinforce each other or create tension.
+
+### Decisions with consequences
+
+Founders influence the rival behaviors the simulation can already express: genre choice, project ambition, risk, and whether to persist or change direction.
+
+An actual result updates their circumstances and memories. Filter available actions by what is currently possible, then let personality, ambition, pressure, and relevant memories influence how likely each action is. Seeded randomness selects among those possibilities. The next release produces new consequences.
+
+Examples:
+
+- A proud specialist becomes more determined after losing recognition in its strongest genre.
+- A cautious founder retreats after repeated disappointments.
+- An opportunist follows another studio's breakthrough into a newly promising genre.
+- An experimental founder uses a successful release as the opportunity to try something unfamiliar.
+
+Early financial pressure can be represented by a simple, clearly defined performance state based on rival results. A complete rival accounting system can wait.
+
+Rivals also react to one another. Their stories continue while the player concentrates on their own projects.
+
+### Presentation
+
+- Show the founder, personality, ambition, and recent history in the rival profile.
+- Explain consequential decisions through short reports tied to actual events.
+- Keep routine activity quiet. Reserve attention for a recognizable person doing something that matters.
+- Preserve people, motives, memories, and pending decisions through save/load.
+
+**Done when:** players recognize several founders, form expectations about them, and occasionally see a surprising decision that still makes sense.
+
+---
+
+## v0.3.0 - Gambits & Opportunities
+
+Give the player repeated opportunities to use their build and respond to the people around them.
+
+**Builds on:** v0.2.0 traits (gambits and opportunities read trait tags for eligibility and payoff), the v0.2.2 gambit prototype (Focused Scope, Prestige Project), and v0.2.5 founders (opportunities reference live rival/founder state).
+
+**What ships:**
+
+- Four to six Project Gambits, selectable per project from the Game Concept dialog.
+- Roughly 6–10 Industry Opportunities, generated from live company, market, and founder state rather than drawn from a static event table.
+- The first one or two Defining Moments, reusing the trait-draft path to prove out a non-milestone trigger ahead of the full set in v0.4.0.
+
+### Project Gambits
+
+An optional choice in the Game Concept dialog commits the current project to a clear trade-off. Ordinary development remains available.
+
+Expand the prototype into four to six gambits:
+
+- **Focused Scope:** concentrate the project, trading ambition for a more manageable commitment.
+- **Rush Development:** reach the market sooner while accepting development risks.
+- **Prestige Project:** commit additional resources to a release with higher expectations.
+- **Experimental Design:** pursue an unfamiliar approach with greater learning potential and uncertainty.
+- **Trend Chase:** commit to a rising opportunity whose value may change before release.
+
+Eligibility follows the current situation. Costs, requirements, and risks are visible before commitment. Studio traits change how attractive a gambit is, while preserving its meaningful trade-off.
+
+Record the chosen gambit and its outcome with the finished game.
+
+### Industry Opportunities
+
+Create roughly 6–10 reusable situations grounded in actual company, market, or character state.
+
+Examples:
+
+- An experimental success attracts press interest: make an ambitious public commitment for more attention, or keep expectations modest.
+- A rival abandons its specialty after repeated failures, creating an opening the player can investigate or pursue.
+- A studio known for safe releases receives a creative challenge that rewards a successful unfamiliar project.
+- A struggling company encounters an opportunity to make a smaller recovery project, changing the trade-off between survival and ambition.
+
+Authored event templates provide the situations. Current state determines who is involved, which options make sense, and what can happen afterward. Store consequential commitments so later events can refer to them.
+
+Use an unobtrusive indicator and concise choices. Information can remain in the industry feed; decisions appear when they are relevant. Any deadline is explicit.
+
+The first pool uses implemented effects on projects, money, fans, research, market behavior, and memories. Personnel transfers and publishing negotiations join once their supporting systems exist.
+
+**Done when:** opportunities and gambits create decisions that depend on this run, and players sometimes make a choice they would reject with another build.
+
+---
+
+## v0.4.0 - Rivalries & Turning Points
+
+Connect builds, personalities, memories, and results into longer stories.
+
+**Builds on:** v0.2.5 founders (their personalities and memories are what react), v0.2.0 trait tags (rivals read the player's build), and v0.3.0 gambits/opportunities (a turning point can reference a past commitment).
+
+**What ships:**
+
+- Emergent rivalries: relationships between the player and rivals, and between rivals themselves, built from real outcomes instead of a hidden meter.
+- Defining Moments: the full set of roughly 5–10 rare, campaign-shaping choices, keyed to what actually happened rather than a level-up schedule.
+
+### Emergent rivalries
+
+- Competition, imitation, repeated defeats, and abandoned opportunities create relationships with concrete causes.
+- Personality shapes the response: a founder may confront, imitate, avoid, or outlast a competitor.
+- Relationship descriptions explain history: “Lost the strategy lead to your studio” is more useful than an unexplained hostility score.
+- Every displayed relationship has an observable consequence for behavior or available opportunities.
+- A rare leadership change can alter an established rival's direction while preserving the company's history. Wider character careers come later.
+
+A possible sequence:
+
+> Your unusual strategy game becomes a hit. An opportunistic competitor follows it. A proud specialist commits to defending its reputation. Competition increases saturation, and its expensive release disappoints. The opportunist moves on; the specialist becomes determined to reclaim the genre.
+
+Each step comes from reusable rules and real outcomes. Different founders, releases, or player choices can send the sequence elsewhere.
+
+### Defining Moments
+
+Rare choices — roughly 5–10 across a full campaign — respond to events that actually happened:
+
+- **Overnight Sensation:** a breakthrough release offers different ways to develop the studio's new identity.
+- **On the Brink:** serious financial pressure creates a chance to adopt a leaner approach or commit to a risky recovery.
+- **Outgrowing the Formula:** a once-reliable specialty begins to struggle, prompting a choice between reinvention and renewed commitment.
+- **The Rival Falls:** an established competitor's collapse changes the opportunities around its former specialty.
+
+Moments can offer trait evolution, a replacement, or a lasting commitment. Costs and consequences are visible. A difficult period can redirect a company without automatically locking it into permanent decline.
+
+**Done when:** a campaign contains memorable stories connecting multiple systems, with meaningful room for the player to respond.
+
+---
+
+## v0.5.0 - Industry History & Reasons to Replay
+
+Make each campaign's identity and consequences easy to revisit.
+
+**Builds on:** every system from v0.2.0 through v0.4.0 — this version's entire job is to record and surface what they produced, not to add new mechanics of its own.
+
+- **Run timeline:** releases, booms, saturation crises, conditions, trait choices, gambits, founder decisions, and defining moments.
+- **Causal connections:** show which earlier release, decision, or setback contributed to an important later development.
+- **Studio legacy:** summarize what the company became known for and how its identity changed.
+- **Character histories:** revisit a founder's breakthrough, obsession, retreat, recovery, or departure.
+- **End-of-run recap:** recognize different accomplishments, including financial success, influential games, experimentation, persistence, and successful reinvention.
+- **Shared seeds:** expose the seed and record the mod version and relevant settings alongside it. Shared starting conditions can produce different histories through player decisions.
+- **Deeper doctrine content:** add selected trait variants, gambits, and opportunities after the base builds have been tested across repeated runs.
+
+Seeded systems must continue consistently across save/load. Keep the external condition schedule independent of random draws used by player opportunities. Cross-version reproduction is only promised where compatibility is explicitly supported.
+
+If permanent unlocks are added, prioritize extra possibilities and starting options. The first run should already contain a complete, viable experience.
+
+**Done when:** after two campaigns, players can explain why they built different studios and tell different stories about the industry around them.
+
+---
+
+## Expansion toward v1.0
+
+These expand the proven core. Each must pass the Expansion Rule below.
+
+| Version | Theme | What makes it worth adding |
+|---|---|---|
+| **v0.6.0** | **Legacy & Audiences** | Deeper franchise identity, sequels, audience expectations, cult followings, fatigue, and rival IP make past releases shape future choices. |
+| **v0.7.0** | **Life After Launch** | Patches, ports, expansions, DLC, remasters, and ongoing support create competing uses for time and resources. Routine upkeep stays manageable. |
+| **v0.8.0** | **People, Studios & Publishing** | Staff ambitions, creative disagreements, departures, new studios, publisher deals, funding, and acquisitions let people and opportunities move through the industry. |
+| **v0.9.0** | **Console Wars** | Platform audiences, support, exclusivity, and dynamic competition change where different studios can succeed. |
+| **v1.0.0** | **Living Industry** | Integrated balance, compatibility, polished explanations, complete histories, and optional shorter scenarios support repeated play. |
+
+The character ambition grows in v0.8: a designer can leave a failing company and return years later with a small studio, keeping their specialty and memories. A cautious successor can redirect an aggressive rival. A publisher can favor creators it previously helped succeed.
+
+After-launch features must earn their place through decisions. A remaster becomes interesting when franchise history, audience demand, platform fit, and studio strengths make its value situational. The same standard applies to acquisitions, contracts, and exclusivity.
+
+### Expansion Rule
+
+A major feature should:
+
+1. Interact meaningfully with at least two existing systems.
+2. Create a decision, a persistent consequence, or a different viable way to play.
+3. Have a small version that proves its value before receiving extensive content or simulation.
+
+## Beyond v1.0 - Directions to explore
+
+Engine and technology competition; online games and distribution changes; regional audiences; deeper alternate industry histories; an optional platform-holder endgame; and an extension API for other mods.
+
+These remain possibilities. The core promise takes priority over the feature count.
+
+---
+
+## Revisit later - possible optimization points
+
+None of these block the current plan. They're flagged here so a full-length campaign, or the version that grows the relevant system further, can confirm whether they're still cheap enough before the pool grows past this point.
+
+- **Timeline and history storage (v0.5.0+):** cap and compact recorded entries so a long campaign's save doesn't grow without bound; check actual save size once the timeline is recording for real.
+- **Rival roster at scale (v0.2.5+):** founder memories, relationships, and Defining Moments per rival should stay small and bounded per studio; recheck once the whole roster carries a full persona instead of just release stats.
+- **Weekly market tick cost (ongoing):** each genre's tick already touches several layers (target, momentum, saturation); revisit only if a later system (conditions, opportunities) adds meaningful per-tick work on top.
+- **Opportunity and gambit pool growth (v0.3.0+):** eligibility filtering across a growing pool should stay simple; recheck if the pool approaches the size of the trait pool (~12).
+
+---
+
+## Principles that decide what gets in
+
+1. **Make another run worth starting.** Vary available tools, circumstances, people, and commitments so experience helps the player adapt.
+2. **Let builds feel powerful.** Reward coherent combinations while retaining meaningful costs and competing opportunities.
+3. **Make personalities affect behavior.** A character's motives and memories must influence something the player can observe.
+4. **Give surprises understandable causes.** Use seeded uncertainty among plausible possibilities, with signals that help the player form expectations.
+5. **Let the world act independently.** Rivals pursue ambitions and respond to one another as well as to the player.
+6. **Carry consequences forward.** Important decisions change later behavior, opportunities, or history. Record their causes when they occur.
+7. **Preserve the game-making core.** People and events enrich project creation, research, growth, and progression. Familiar foundational rules remain learnable.
+8. **Protect agency and recovery.** Serious setbacks can change a run's direction. Avoid unanswerable cascades and check combined effects across systems.
+9. **Earn attention.** Explain what matters, keep routine activity quiet, and interrupt only for consequential choices or major moments.
+10. **Prove the smallest fun version.** Test complete interactions in played campaigns before expanding the content pool.
+
+The final test for every major update:
+
+> Did this help the player build a different company, make an interesting decision, or experience a story they could not have planned?
