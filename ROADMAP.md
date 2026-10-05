@@ -1,6 +1,6 @@
 # Living Industry - Roadmap
 
-Where the mod is and where it is going. Versions are planning buckets, not promises. Features move when their dependencies are ready, and a small system that creates good decisions earns its expansion. Everything below — scope, order, version numbers, and names — is a current best guess and subject to change as design and playtesting reveal new information.
+Where the mod is and where it is going. Versions are planning buckets, not promises. Features move when their dependencies are ready, and a small system gets expanded only after it has shown it creates good decisions. Everything below (scope, order, version numbers, and names) is a current best guess and will change as design and playtesting turn up new information.
 
 The foundation is shipped as described below. Everything after v0.1.x is planned.
 
@@ -27,7 +27,7 @@ A successful run might become the story of a small studio that revived an abando
 5. Develop the studio through limited trait drafts and occasional defining choices.
 6. Respond as competitors act, conditions change, and earlier decisions return in new forms.
 
-Roguelike elements provide adaptation, commitment, and powerful combinations. A recognizable strategy can remain satisfying throughout a run; later runs should offer different paths to success. The normal campaign remains the main experience, with shorter scenarios considered only once the core loop is proven.
+The roguelike parts are about adapting, committing to a direction, and finding strong combinations. A recognizable strategy can remain satisfying throughout a run; later runs should offer different paths to success. The normal campaign remains the main experience, with shorter scenarios considered only once the core loop is proven.
 
 ---
 
@@ -56,7 +56,7 @@ The simulation probe showed that a genre hot at conception remained hot a year l
 - In-game verification of everything shipped in v0.1.0 and v0.1.1, followed by fixes.
 - Confirmation that market timing matters while game quality and the vanilla progression remain important.
 
-**Done when:** the foundation works through a played campaign and the player can understand its meaningful effects.
+**Done when:** the foundation works through a played campaign and the player can understand its main effects.
 
 ---
 
@@ -64,12 +64,12 @@ The simulation probe showed that a genre hot at conception remained hot a year l
 
 Give the player a persistent build: a first, self-contained step before Industry Conditions and the identity UI layer on top of it.
 
-**Builds on:** the stable v0.1.x market — traits need a market worth reacting to before they're worth choosing.
+**Builds on:** the stable v0.1.x market. Traits need a market worth reacting to before they're worth choosing.
 
-- The first trait draft follows the first completed game. Further drafts arrive at meaningful milestones.
+- The first trait draft follows the first completed game. Further drafts arrive at major milestones.
 - Usually offer three traits and choose one. Offers are seeded, with some influenced by company history and some leaving room for a new direction.
 - Begin with three active trait slots for the initial pool. Expand toward 4–6 only as the pool grows enough to preserve distinct builds. Replacement or evolution happens at clear milestones, with any transition cost shown beforehand.
-- Traits change priorities, constraints, or opportunities. Numerical effects are welcome when they produce a meaningful decision.
+- Traits change priorities, constraints, or opportunities. Numerical effects are fine when they force a decision.
 - Strong combinations should feel powerful. Their costs and limitations should remain relevant.
 
 Initial candidates:
@@ -104,7 +104,7 @@ Initial candidates:
 - **Crowded Shelves:** release-driven saturation lasts longer, making repeated entry into busy genres more costly.
 - **Blockbuster Economy - later eras:** large releases have more pronounced upside and downside, increasing the importance of commitment and financial reserves.
 
-Ship three starting conditions first. Starting conditions must affect decisions available to an early studio; introduce Blockbuster Economy when larger projects become available. Conditions should last long enough for several meaningful project decisions. Genre-specific booms such as an RPG Renaissance remain market developments that can occur within these conditions.
+Ship three starting conditions first. Starting conditions must affect decisions available to an early studio; introduce Blockbuster Economy when larger projects become available. Conditions should last long enough for several project decisions. Genre-specific booms such as an RPG Renaissance remain market developments that can occur within these conditions.
 
 **Done when:** a run's starting condition visibly changes which early decisions make sense, without needing a tooltip to notice it.
 
@@ -114,13 +114,13 @@ Ship three starting conditions first. Starting conditions must affect decisions 
 
 Tie traits and conditions together into something the player can see and recognize as their build.
 
-**Builds on:** v0.2.0 Studio Traits and v0.2.1 Industry Conditions directly — this version has nothing new to show without them.
+**Builds on:** v0.2.0 Studio Traits and v0.2.1 Industry Conditions directly. This version has nothing new to show without them.
 
 - A Studio Identity panel explains active traits, relevant conditions, and their effects.
 - An emerging doctrine names the dominant direction: Auteur Studio, Market Machine, Niche Specialist, or Technical Pioneer. At first it only describes the build; it does not require a separate progression system.
 - Begin recording significant choices and their causes for the future timeline (this pays off in full at v0.5.0).
 - Add a compact explanation of the mod's major contributions to a release result. Show measured effects; distinguish uncertain forecasts from known outcomes.
-- Prototype two gambits alongside the traits — Focused Scope and Prestige Project — to test interactions before expanding the pool in v0.3.0.
+- Prototype two gambits (Focused Scope and Prestige Project) alongside the traits to test interactions before expanding the pool in v0.3.0.
 
 **Done when:** different trait/condition combinations produce recognizably different opening plans, and the identity panel matches what a player would already say about their studio.
 
@@ -130,7 +130,7 @@ Tie traits and conditions together into something the player can see and recogni
 
 Give the industry a small recurring cast whose decisions reflect their personalities and histories.
 
-**Builds on:** the v0.1.x rival roster — founders are layered onto studios that already exist — and loosely on v0.2.0's trait tags, since a founder's personality is designed to reinforce or push against the player's own build.
+**Builds on:** the v0.1.x rival roster (founders are layered onto studios that already exist), and loosely on v0.2.0's trait tags, since a founder's personality is designed to reinforce or push against the player's own build.
 
 ### Rival founders
 
@@ -147,7 +147,7 @@ Studio traits describe how a company operates. Founder personalities describe wh
 
 Founders influence the rival behaviors the simulation can already express: genre choice, project ambition, risk, and whether to persist or change direction.
 
-An actual result updates their circumstances and memories. Filter available actions by what is currently possible, then let personality, ambition, pressure, and relevant memories influence how likely each action is. Seeded randomness selects among those possibilities. The next release produces new consequences.
+Each result updates their circumstances and memories. Filter available actions by what is currently possible, then let personality, ambition, pressure, and relevant memories influence how likely each action is. Seeded randomness selects among those possibilities. The next release produces new consequences.
 
 Examples:
 
@@ -163,7 +163,7 @@ Rivals also react to one another. Their stories continue while the player concen
 ### Presentation
 
 - Show the founder, personality, ambition, and recent history in the rival profile.
-- Explain consequential decisions through short reports tied to actual events.
+- Explain consequential decisions through short reports tied to what happened.
 - Keep routine activity quiet. Reserve attention for a recognizable person doing something that matters.
 - Preserve people, motives, memories, and pending decisions through save/load.
 
@@ -195,13 +195,13 @@ Expand the prototype into four to six gambits:
 - **Experimental Design:** pursue an unfamiliar approach with greater learning potential and uncertainty.
 - **Trend Chase:** commit to a rising opportunity whose value may change before release.
 
-Eligibility follows the current situation. Costs, requirements, and risks are visible before commitment. Studio traits change how attractive a gambit is, while preserving its meaningful trade-off.
+Eligibility follows the current situation. Costs, requirements, and risks are visible before commitment. Studio traits change how attractive a gambit is, but the trade-off stays.
 
 Record the chosen gambit and its outcome with the finished game.
 
 ### Industry Opportunities
 
-Create roughly 6–10 reusable situations grounded in actual company, market, or character state.
+Create roughly 6–10 reusable situations built from the current company, market, or character state.
 
 Examples:
 
@@ -235,7 +235,7 @@ Connect builds, personalities, memories, and results into longer stories.
 
 - Competition, imitation, repeated defeats, and abandoned opportunities create relationships with concrete causes.
 - Personality shapes the response: a founder may confront, imitate, avoid, or outlast a competitor.
-- Relationship descriptions explain history: “Lost the strategy lead to your studio” is more useful than an unexplained hostility score.
+- Relationship descriptions explain history: "Lost the strategy lead to your studio" is more useful than an unexplained hostility score.
 - Every displayed relationship has an observable consequence for behavior or available opportunities.
 - A rare leadership change can alter an established rival's direction while preserving the company's history. Wider character careers come later.
 
@@ -247,7 +247,7 @@ Each step comes from reusable rules and real outcomes. Different founders, relea
 
 ### Defining Moments
 
-Rare choices — roughly 5–10 across a full campaign — respond to events that actually happened:
+Rare choices, roughly 5–10 across a full campaign, respond to events that actually happened:
 
 - **Overnight Sensation:** a breakthrough release offers different ways to develop the studio's new identity.
 - **On the Brink:** serious financial pressure creates a chance to adopt a leaner approach or commit to a risky recovery.
@@ -256,7 +256,7 @@ Rare choices — roughly 5–10 across a full campaign — respond to events tha
 
 Moments can offer trait evolution, a replacement, or a lasting commitment. Costs and consequences are visible. A difficult period can redirect a company without automatically locking it into permanent decline.
 
-**Done when:** a campaign contains memorable stories connecting multiple systems, with meaningful room for the player to respond.
+**Done when:** a campaign contains memorable stories connecting multiple systems, and the player has room to respond to them.
 
 ---
 
@@ -264,7 +264,7 @@ Moments can offer trait evolution, a replacement, or a lasting commitment. Costs
 
 Make each campaign's identity and consequences easy to revisit.
 
-**Builds on:** every system from v0.2.0 through v0.4.0 — this version's entire job is to record and surface what they produced, not to add new mechanics of its own.
+**Builds on:** every system from v0.2.0 through v0.4.0. This version records and surfaces what they produced; it adds no new mechanics of its own.
 
 - **Run timeline:** releases, booms, saturation crises, conditions, trait choices, gambits, founder decisions, and defining moments.
 - **Causal connections:** show which earlier release, decision, or setback contributed to an important later development.
@@ -320,7 +320,7 @@ None of these block the current plan. They're flagged here so a full-length camp
 
 - **Timeline and history storage (v0.5.0+):** cap and compact recorded entries so a long campaign's save doesn't grow without bound; check actual save size once the timeline is recording for real.
 - **Rival roster at scale (v0.2.5+):** founder memories, relationships, and Defining Moments per rival should stay small and bounded per studio; recheck once the whole roster carries a full persona instead of just release stats.
-- **Weekly market tick cost (ongoing):** each genre's tick already touches several layers (target, momentum, saturation); revisit only if a later system (conditions, opportunities) adds meaningful per-tick work on top.
+- **Weekly market tick cost (ongoing):** each genre's tick already touches several layers (target, momentum, saturation); revisit only if a later system (conditions, opportunities) adds noticeable per-tick work on top.
 - **Opportunity and gambit pool growth (v0.3.0+):** eligibility filtering across a growing pool should stay simple; recheck if the pool approaches the size of the trait pool (~12).
 
 ---
@@ -328,7 +328,7 @@ None of these block the current plan. They're flagged here so a full-length camp
 ## Principles that decide what gets in
 
 1. **Make another run worth starting.** Vary available tools, circumstances, people, and commitments so experience helps the player adapt.
-2. **Let builds feel powerful.** Reward coherent combinations while retaining meaningful costs and competing opportunities.
+2. **Let builds feel powerful.** Reward coherent combinations while keeping their costs and the competing opportunities relevant.
 3. **Make personalities affect behavior.** A character's motives and memories must influence something the player can observe.
 4. **Give surprises understandable causes.** Use seeded uncertainty among plausible possibilities, with signals that help the player form expectations.
 5. **Let the world act independently.** Rivals pursue ambitions and respond to one another as well as to the player.

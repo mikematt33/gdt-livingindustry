@@ -43,7 +43,7 @@
 			saturationMomentumDamping: 0.15, // fraction of positive momentum drift cancelled per point of saturation
 
 			// New game only (see Market.randomizeStart): each genre draws a target, starts within this
-			// offset of it, and gets its own cycle phase, so every run starts with a different landscape.
+			// offset of it, and gets its own cycle phase, so every run starts with a different market.
 			startDemandVariance: 0.3,
 			startMomentumVariance: 0.01,
 

@@ -169,7 +169,7 @@
 		LivingIndustry.Market.revision++;
 	};
 
-	// Gives each new game a distinct genre landscape instead of always starting flat at
+	// Gives each new game a distinct starting market instead of always starting flat at
 	// demand=1/momentum=0: each genre draws its own taste target, starts near it, and gets its own
 	// cycle phase. New game only - never called for old-save backfill.
 	LivingIndustry.Market.randomizeStart = function () {
