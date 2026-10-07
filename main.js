@@ -14,7 +14,7 @@ var LivingIndustry = {};
 			return;
 		}
 		var modules = ['Settings', 'Persistence', 'Market', 'Rivals', 'News', 'Integration', 'PlayerInfluence', 'Learning',
-			'DevProgress', 'FocusPercent', 'ReleasePreview', 'ConceptHint', 'MarketPulse', 'InstantReviews', 'Tutorial', 'TitleMenu', 'SettingsTab'];
+			'DevProgress', 'FocusPercent', 'ReleasePreview', 'ConceptHint', 'MarketPulse', 'InstantReviews', 'Tutorial', 'TitleMenu', 'GameMenu', 'SettingsTab'];
 		for (var i = 0; i < modules.length; i++) {
 			try {
 				LivingIndustry[modules[i]].init();
@@ -51,6 +51,7 @@ var LivingIndustry = {};
 		LivingIndustry.path + '/ui/instantReviews.js',
 		LivingIndustry.path + '/ui/tutorial.js',
 		LivingIndustry.path + '/ui/titleMenu.js',
+		LivingIndustry.path + '/ui/gameMenu.js',
 		LivingIndustry.path + '/ui/settingsTab.js'
 	], ready, error);
 })();

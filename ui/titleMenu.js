@@ -14,6 +14,7 @@
 	var RAYS_CLASS = 'li-canvas-rays';
 	var RAYS_PERIOD_MS = 120000; // vanilla: animation-duration 120s
 	var RAYS_FRAME_MS = 1000 / 30;
+	var QUIT_FALLBACK_MS = 2000;
 
 	var menu = null;
 	var refs = {};
@@ -163,6 +164,15 @@
 		},
 		quit: function () {
 			window.close();
+			// Backstop for a close request nw never delivers (as after a reload(3) page reload): the
+			// title screen has nothing unsaved, so quit outright if the window is still here.
+			setTimeout(function () {
+				try {
+					require('nw.gui').App.quit();
+				} catch (e) {
+					LivingIndustry.error('Living Industry title menu: could not quit.', e);
+				}
+			}, QUIT_FALLBACK_MS);
 		}
 	};
 
@@ -557,7 +567,7 @@
 			['Game Concept', 'While defining a game, the chosen genre\'s market line appears under the topic/genre hint so timing is part of the decision.'],
 			['Assists', 'Slider marks, snap-to-hints, remembered sliders, the release slider check and learn-by-doing are optional helpers under one master switch - turn it off for the pure vanilla challenge.'],
 			['Settings', 'Settings > Living Industry holds every display option and assist, plus a one-click Quiet mode that routes chatty vanilla popups to the sidebar. This title menu can be switched back to the vanilla click-to-continue screen there (takes effect next launch).'],
-			['In-game menu', 'Esc or right-click still opens the regular game menu while playing.']
+			['In-game menu', 'Esc or right-click still opens the regular game menu while playing. Its Exit is split into Main Menu, which autosaves and returns to this title screen, and Exit to Desktop (can be turned off in settings).']
 		];
 		for (var i = 0; i < items.length; i++) {
 			var h3 = document.createElement('h3');

@@ -74,7 +74,7 @@ The title screen keeps the vanilla sunrays and logo but replaces "Click to conti
 - **Continue** loads your newest save. The button shows the company name and in-game date, or `autosave` if that is newest, and is hidden when there are no saves.
 - **New Game**, **Load**, **Settings**, **Mods**, **High Score**, **Achievements**, **Help** and **Quit** do what they say.
 
-The menu scales with the window, so it stays readable on large monitors and the sunrays reach all four corners. Clicking the background no longer loads a game. Esc and right-click still open the regular in-game menu while playing, and **Help** has a Living Industry section at the top.
+The menu scales with the window, so it stays readable on large monitors and the sunrays reach all four corners. Clicking the background no longer loads a game. Esc and right-click still open the regular in-game menu while playing, where Exit is split into **Main Menu** (autosaves, then returns to this title screen) and **Exit to Desktop**. **Help** has a Living Industry section at the top.
 
 To get the vanilla screen back, turn off *Living Industry title menu* in Settings > Living Industry. It applies the next time you start the game.
 
@@ -92,6 +92,7 @@ Each feature has a toggle in Settings > Living Industry > Display. All are on by
 - **Quiet mode** is a button that routes the chatty vanilla popups (Industry News, Platform News, New Research, Company Milestones) to the sidebar. *Vanilla popups* flips them back. Decisions and reports are untouched.
 - **Living Industry tutorial** toggles the tips, and *Show tips again in this save* re-arms them.
 - **Living Industry title menu** toggles the menu described above.
+- **Main Menu button in the in-game menu** splits the Esc / right-click menu's Exit into **Main Menu** and **Exit to Desktop**. Main Menu writes the autosave, the same save vanilla Exit makes, and restarts into the title screen, where **Continue** picks it up. If the autosave fails you stay in the game.
 
 ---
 
@@ -141,7 +142,7 @@ After that comes the roguelite layer: **Studio Traits** that build up your compa
 | [rivals/](rivals/) | Rival studio roster and generated releases |
 | [events/](events/) | Industry news conditions, delivered through the sidebar or popups |
 | [integration/](integration/) | Hooks into vanilla sales, releases and staff: sales modifier, player influence, learn by doing |
-| [ui/](ui/) | Title menu, Market Pulse, dev progress, slider percentages, marks and snap, release check, concept hint, instant reviews, tutorial, settings tab |
+| [ui/](ui/) | Title menu, in-game menu Main Menu button, Market Pulse, dev progress, slider percentages, marks and snap, release check, concept hint, instant reviews, tutorial, settings tab |
 
 How a week of market data flows:
 

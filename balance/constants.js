@@ -164,6 +164,7 @@
 			trendNews: false, // also report trend reversals (rising <-> falling); Market Pulse shows these anyway
 			tutorialTips: true, // ui/tutorial.js: welcome after company creation + one-time tips per run; "Don't show again" clears it
 			titleMenu: true, // ui/titleMenu.js: Continue/New/Load/... buttons on the title screen instead of click-anywhere (read at startup)
+			gameMenuMainMenu: true, // ui/gameMenu.js: split the in-game menu's Exit into Main Menu (autosave + back to the title screen) and Exit to Desktop
 
 			// Assists (gameplay help). assistsEnabled is the master switch: when false every key listed
 			// in assistKeys below reads as false, whatever its own stored value.

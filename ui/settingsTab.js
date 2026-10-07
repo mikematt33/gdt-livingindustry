@@ -23,7 +23,9 @@
 		{ key: 'tutorialTips', kind: 'checkbox', label: 'Living Industry tutorial',
 			hint: 'A short welcome after you create your company, then one-time tips the first time each new screen appears. "Don\'t show again" on the welcome turns this off.' },
 		{ key: 'titleMenu', kind: 'checkbox', label: 'Living Industry title menu',
-			hint: 'Continue / New Game / Load / Settings / ... buttons on the title screen, scaled to the window, instead of the vanilla click-to-continue. Takes effect the next time the game starts.' }
+			hint: 'Continue / New Game / Load / Settings / ... buttons on the title screen, scaled to the window, instead of the vanilla click-to-continue. Takes effect the next time the game starts.' },
+		{ key: 'gameMenuMainMenu', kind: 'checkbox', label: 'Main Menu button in the in-game menu',
+			hint: 'Splits Exit in the Esc / right-click menu into Main Menu, which autosaves and returns to the title screen, and Exit to Desktop.' }
 	];
 
 	var ASSIST_CONTROLS = [
