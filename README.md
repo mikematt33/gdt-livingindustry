@@ -1,199 +1,178 @@
-### Game Dev Tycoon: Living Industry
+# Game Dev Tycoon: Living Industry
 
-**Version 0.1.1**
+A game market that rises, falls and reacts to you and rival studios, plus a new title menu, quality-of-life features and optional assists.
 
-Living Industry makes the game market *move*. In vanilla Game Dev Tycoon the best topic/genre
-combination is always the best; here every genre has its own demand that rises and falls, rival
-studios release games that push it around, and your own releases push back. Reading the market
-and timing a release becomes part of the game, and no two saves write the same industry history.
-
-It also bundles a set of quality-of-life features and optional "assists" (slider marks, snap to
-hints, instant reviews, learn by doing, and more) so you don't need three separate Workshop mods
-for them - each one can be switched off.
-
-Living Industry does **not** change topics, genres, platforms, research, staff or the vanilla
-development loop. It sits on top of the game you already know.
+[![version](https://img.shields.io/badge/version-0.1.1-blue)](ROADMAP.md) [![Game Dev Tycoon](https://img.shields.io/badge/Game%20Dev%20Tycoon-1.7.x%20Steam-green)](https://store.steampowered.com/app/239820/Game_Dev_Tycoon/)
 
 ---
 
-#### Installation
+### What it is
 
-1. Requires **Game Dev Tycoon 1.7.x (Steam)** and the **gdt-modAPI** mod that ships with the game.
-2. Copy the `gdt-livingindustry` folder into the game's `mods` folder
-   (Steam: `...\steamapps\common\Game Dev Tycoon\mods\`).
-3. Start the game, open **Mods** from the title menu, and tick both **gdt-modAPI** and
-   **Game Dev Tycoon: Living Industry**. Restart when asked.
-4. Start a new game or load a save. Saves made without the mod work: they simply start with a
-   neutral market and a fresh set of rivals.
+In vanilla Game Dev Tycoon, a topic/genre combination that sells well today sells just as well twenty years later. Living Industry gives every genre its own demand that rises and falls. Rival studios release games that push it around, and your own releases push back. Reading the market and timing a release become part of the game, and every save writes a different industry history.
 
-If you also use the Workshop mods **Percentager**, **instaReview** or **Learn By Doing**, disable
-them - Living Industry includes all three features (Learn By Doing is detected and Living
-Industry's version defaults to off while it is enabled, so skill gains don't double up).
+It also bundles quality-of-life features and optional assists (slider marks, snap to hints, instant reviews, learn by doing and more), so you don't need three separate Workshop mods. Each one can be switched off.
+
+Living Industry does not change topics, genres, platforms, research, staff or the vanilla development loop. It sits on top of the game you already know.
 
 ---
 
-#### The title screen
+### Install
 
-The title screen keeps the vanilla look (spinning sunrays, logo) but replaces "Click to
-continue..." with a menu under the logo:
+1. You need Game Dev Tycoon 1.7.x (Steam) and the gdt-modAPI mod that ships with the game.
+2. Copy the `gdt-livingindustry` folder into the game's `mods` folder, which on Steam is `...\steamapps\common\Game Dev Tycoon\mods\`.
+3. Start the game, open **Mods** from the title menu, and tick both **gdt-modAPI** and **Game Dev Tycoon: Living Industry**. Restart when asked.
+4. Start a new game or load a save. Saves made without the mod work fine; they start with a neutral market and a fresh set of rivals.
 
-- **Continue** - loads your newest save; the button shows the company name and in-game date, and
-  `autosave` if that is the newest. Hidden when there are no saves.
-- **New Game**, **Load**, **Settings**, **Mods**, **High Score**, **Achievements**, **Help**, **Quit**.
+#### Workshop mods it replaces
 
-Everything scales with the window, so it stays readable on large monitors and the sunrays reach
-all four corners. Clicking the background no longer loads a game. Esc / right-click still open the
-regular in-game menu while playing, and **Help** has a "Living Industry" section at the top.
-
-Prefer the vanilla screen? Turn off *Living Industry title menu* in Settings > Living Industry
-(applies the next time you start the game).
+| Workshop mod | Living Industry equivalent | What to do |
+|---|---|---|
+| Percentager | Time allocation percentages (Display) | Disable Percentager |
+| instaReview | Instant reviews (Display) | Disable instaReview |
+| Learn By Doing | Learn by doing (Assists) | Disable it. While it is enabled, Living Industry's version defaults to off so skill gains don't double up. |
 
 ---
 
-#### The living market
+### The living market
 
-Each of the six genres (Action, Adventure, RPG, Simulation, Strategy, Casual) has three hidden
-values that tick every in-game week:
+Each of the six vanilla genres (Action, Adventure, RPG, Simulation, Strategy, Casual) has four hidden values that update every in-game week:
 
 | Value | What it means for you |
 |---|---|
-| **Demand** | How much players want that genre right now. Neutral is 1. At or above 1.5 the genre is **HOT**, at or below 0.6 it is **COLD**. Demand settles toward where audience tastes currently sit for that genre, so a boom that isn't backed by a real shift in tastes cools off and a dead genre recovers. |
-| **Tastes** | Where demand is heading over the coming months. Every few years each genre's audience shifts - a genre comes into fashion, goes out of fashion, or settles back to ordinary - and holds that for two to four years. Shown as the trend arrow (rising / flat / falling), so a genre that is HOT when you start a game is usually still hot when you ship it. |
-| **Momentum** | Short-lived pushes from recent releases and week-to-week noise. Fades over about three months. |
-| **Saturation** | How many games recently landed in that genre. A **crowded** genre grows more slowly. Fades over a few months. |
+| Demand | How much players want the genre right now. Neutral is 1. At 1.5 or above the genre is **HOT**; at 0.6 or below it is **COLD**. Demand settles toward the genre's current tastes, so a boom with no real shift behind it cools off and a dead genre recovers. |
+| Tastes | Where demand is heading over the coming months. Every two to four years each genre's audience shifts: the genre comes into fashion, goes out of fashion, or settles back to ordinary. Shown as the trend arrow, so a genre that is HOT when you start a game is usually still hot when you ship it. |
+| Momentum | Short-lived pushes from recent releases and week-to-week noise. Fades over about three months. |
+| Saturation | How many games recently landed in the genre. A crowded genre grows more slowly. Fades over a few months. |
 
-**What moves it**
+#### What moves it
 
-- **Rival studios.** Every save generates its own roster of named competitors, each with a
-  release cadence, a typical quality and a risk appetite. A rival hit lifts its genre's momentum,
-  a flop drags it down, and every rival release adds saturation. Only the better-known studios
-  make the news with their hits and flops; the small ones move the market quietly.
-- **You.** Every game you release adds saturation to its genre (larger games add more). Its
-  review score decides the rest: 9+ is a breakout hit and pushes momentum up hard, 8+ is a hit,
-  6-7.9 is average (saturation only), below 6 a flop, below 4 a major flop.
+- **Rival studios.** Every save generates its own roster of named competitors, each with a release cadence, a typical quality and a risk appetite. A rival hit lifts its genre's momentum, a flop drags it down, and every rival release adds saturation. Only the better-known studios make the news; small ones move the market quietly.
+- **You.** Every game you release adds saturation to its genre, and larger games add more. The review score decides the rest: 9 or higher is a breakout hit and pushes momentum up hard, 8 or higher is a hit, 6 to 7.9 is average and only adds saturation, below 6 is a flop and below 4 a major flop.
 - **Shifting tastes** every few years per genre, plus a little random drift.
-- **New games start different.** Every run has its own seed: starting tastes, demand and the
-  rival roster are drawn from it, so the first years of every run look different.
+- **The run seed.** Starting tastes, demand and the rival roster are drawn from a seed saved with each run, so the first years of every run look different.
 
-**What it does to you**
+#### What it does to you
 
-Your release's sales are multiplied by a modifier taken from its genre's demand: **up to +15% in
-a hot genre, down to -15% in a cold one**. Quality still matters most - a great game in a cold
-genre beats a bad game in a hot one - but timing is now worth real money, and chasing a boom that
-five rivals also chased will meet a crowded, cooling market.
+Your release's sales are multiplied by a modifier taken from its genre's demand: up to +15% in a hot genre and down to -15% in a cold one. Quality still matters most, and a great game in a cold genre beats a bad game in a hot one. But timing is worth real money now, and chasing a boom that five rivals also chased means shipping into a crowded, cooling market.
 
-**Reading the market**
+#### Reading the market
 
-- **Market Pulse** - a compact panel in the top-left corner, one line per genre:
-  `Action  ↗ HOT`, `RPG  → COLD recovering`, `Casual  ↘ crowded`. The word is the demand level,
-  the arrow its direction; `COLD recovering` and `HOT cooling` spell out the two cases where they
-  point opposite ways. Click the header to collapse it. Turn on *Hover details* in settings to
-  see the numbers and the recent releases that moved each genre.
-- **Game Concept dialog** - when you pick a genre, its Market Pulse line appears under the
-  topic/genre hint (orange for hot, blue for cold).
-- **Industry news** - rival hits and flops, and genres turning hot or cold, arrive as
-  non-blocking sidebar items that fade out on their own (click one to read it in full). You can
-  switch to popups or off, and optionally get trend-reversal news too. News about any one genre
-  is rate limited so the sidebar never floods.
+- **Market Pulse** is a compact panel in the top-left corner with one line per genre, such as `Action  ↗ HOT`, `RPG  → COLD recovering` or `Casual  ↘ crowded`. The word is the demand level and the arrow its direction. `COLD recovering` and `HOT cooling` spell out the two cases where they point opposite ways. Click the header to collapse it, and turn on *Hover details on market lines* to see the numbers and the recent releases that moved each genre.
+- **The Game Concept dialog** shows the chosen genre's Market Pulse line under the topic/genre hint, orange for hot and blue for cold.
+- **Industry news** reports rival hits and flops and genres turning hot or cold as sidebar items that fade on their own; click one to read it in full. You can switch to popups or turn news off, and optionally add trend-reversal news. News about any one genre is rate limited, so the sidebar never floods.
 
-**Tutorial.** Right after you create your company a two-page welcome explains the above and
-offers *Show tips as I play* or *Don't show again*. With tips on, a short one-time tip appears
-the first time each new screen shows up in that save (Game Concept, Development Stage, dev
-points, release, and your first game's effect on the market).
+#### Tutorial
+
+Right after you create your company, a two-page welcome explains the market and offers *Show tips as I play* or *Don't show again*. With tips on, a one-time tip appears the first time each new screen shows up in that save: Game Concept, Development Stage, dev points, release, and your first game's effect on the market.
 
 ---
 
-#### Quality of life (Display settings)
+### The title screen
 
-All on by default; each has a toggle in Settings > Living Industry > Display.
+The title screen keeps the vanilla sunrays and logo but replaces "Click to continue..." with a menu:
 
-- **Development progress** - a `Feature: 62% (game 34%)` line in the Fans/Cash box while developing.
-- **Time allocation percentages** - each slider's share on the Development Stage
-  "Time Allocation (Preview)" bar.
-- **Instant reviews** - review scores appear at once instead of the slow reveal animation.
-- **Industry news delivery** - sidebar (default), popup, or off; plus *Also report trend reversals*.
-- **Market Pulse panel**, its *Hover details*, and an **overlay size** (100-200%) for high-resolution
-  screens (vanilla UI is unaffected).
-- **Quiet mode** - one button that routes the chatty vanilla popups (Industry News, Platform
-  News, New Research, Company Milestones) to the sidebar; *Vanilla popups* flips them back.
-  Decisions and reports are untouched.
-- **Living Industry tutorial** toggle and a *Show tips again in this save* button.
-- **Living Industry title menu** toggle.
+- **Continue** loads your newest save. The button shows the company name and in-game date, or `autosave` if that is newest, and is hidden when there are no saves.
+- **New Game**, **Load**, **Settings**, **Mods**, **High Score**, **Achievements**, **Help** and **Quit** do what they say.
+
+The menu scales with the window, so it stays readable on large monitors and the sunrays reach all four corners. Clicking the background no longer loads a game. Esc and right-click still open the regular in-game menu while playing, and **Help** has a Living Industry section at the top.
+
+To get the vanilla screen back, turn off *Living Industry title menu* in Settings > Living Industry. It applies the next time you start the game.
 
 ---
 
-#### Assists (gameplay help, optional)
+### Quality of life
 
-Assists reveal or apply the game's hidden slider rules, so a purist may want them off. They sit
-under one **Enable assists** master switch in Settings > Living Industry (off = vanilla help level;
-your individual choices are kept), with a toggle each:
+Each feature has a toggle in Settings > Living Industry > Display. All are on by default except *Hover details on market lines* and *Also report trend reversals*.
 
-- **Slider marks** - `+++ / ++ / - / -- / ---` marks along each Development Stage slider, with the
-  mark matching that slider's known hint highlighted. Click a mark to jump there. Adds a
-  *Snap to marks: On/Off* button to the window (snapping while dragging is remembered per save).
-- **Snap to hints** - a button that sets every slider from its hint according to the game's review
-  rules (`+++`/`++` to at least 40%, `--`/`---` to the minimum). Only works on features you
-  already have hints for. **Auto-snap** applies it every time a stage opens. This is the strongest
-  assist, so both are off by default.
-- **Remember sliders** - each stage reopens with the values you last used for the same
-  topic + genre combination (stored in the save).
-- **Slider check on the "is ready!" screen** - a `Slider hints: 4 ✓ met · 1 ✗ broken` line
-  counting which known hints you met or broke; hover for the per-feature list. Absent until you
-  know some hints.
-- **Market state in the Game Concept dialog** - the line described above.
-- **Learn by doing** - staff have a small, diminishing chance to gain Design / Technology /
-  Research skill from the points they produce (a green `+1 Design` bubble), capped at 900. A
-  helping hand before training, not a replacement.
-
-Settings are app-wide and follow you across saves. Changes apply immediately (except the title
-menu, which applies at next launch).
+- **Development progress in the status bar** adds a `Feature: 62% (game 34%)` line to the Fans/Cash box while developing.
+- **Time allocation percentages** shows each slider's share on the Development Stage "Time Allocation (Preview)" bar.
+- **Instant reviews** shows review scores at once instead of the slow reveal animation.
+- **Industry news from Living Industry** picks sidebar (the default), popup or off. *Also report trend reversals* adds news when a genre flips between rising and falling.
+- **Market Pulse panel**, *Hover details on market lines*, and **Living Industry overlay size** (100% to 200%) for high-resolution screens. The vanilla UI is unaffected.
+- **Quiet mode** is a button that routes the chatty vanilla popups (Industry News, Platform News, New Research, Company Milestones) to the sidebar. *Vanilla popups* flips them back. Decisions and reports are untouched.
+- **Living Industry tutorial** toggles the tips, and *Show tips again in this save* re-arms them.
+- **Living Industry title menu** toggles the menu described above.
 
 ---
 
-#### Compatibility and saves
+### Assists
 
-- Market state, the rival roster and remembered sliders are stored inside your save through
-  gdt-modAPI, so they survive save/load and restarting the game.
-- Loading a save from an older Living Industry version silently upgrades it, keeping your market
-  and rivals.
-- Disabling the mod leaves your saves playable; the market data is simply ignored.
-- The mod never blocks play on its own: if a base-game hook it relies on is missing (for example
-  after a game update), that one feature switches off and logs an error while the rest keeps
-  working.
+Assists reveal or apply the game's hidden slider rules, so a purist may want them off. One **Enable assists** master switch in Settings > Living Industry turns them all off at once (back to vanilla help) while keeping your individual choices. Each also has its own toggle:
 
-Something odd? Open devtools with `F12` and look for `[Living Industry]` lines in the console; the
-first should read `Living Industry v0.1.1 (state v4, seed N) loaded.`
+- **Slider marks** draw `+++ / ++ / - / -- / ---` along each Development Stage slider and highlight the mark matching that slider's known hint. Click a mark to jump there. This also adds a *Snap to marks: On/Off* button to the window, remembered per save.
+- **Snap to hints** is a button that sets every slider from its hint by the game's review rules: `+++` and `++` to at least 40%, `--` and `---` to the minimum. It only works on features you already have hints for. **Auto-snap** applies it every time a stage opens. This is the strongest assist, so both are off by default.
+- **Remember sliders** reopens each stage with the values you last used for the same topic and genre, stored in the save.
+- **Slider check on the "game is ready" screen** adds a `Slider hints: 4 ✓ met · 1 ✗ broken` line counting which known hints you met or broke. Hover for the per-feature list. It stays hidden until you know some hints.
+- **Market state in the Game Concept dialog** is the Market Pulse line described above.
+- **Learn by doing** gives staff a small, shrinking chance to gain Design, Technology or Research skill from the points they produce, shown as a green `+1 Design` bubble and capped at 900. It helps before training; it doesn't replace it.
 
----
-
-#### Roadmap
-
-v0.1.x tunes the market to the game's development cycle (hot genres should stay hot long enough
-to plan a game around) and runs a full-length balance pass. After that comes the roguelite
-layer: **Studio Traits** that build up your company's identity, seeded **Industry Conditions**
-that make each run structurally different, optional per-game **Project Gambits** and drafted
-**Industry Opportunities**, then rivals that react to your build and a run timeline. The full
-plan, version by version, is in [ROADMAP.md](./ROADMAP.md).
+Settings are app-wide and follow you across saves. Changes apply immediately, except the title menu, which applies at next launch.
 
 ---
 
-#### For developers
+### Saves and compatibility
 
-How the mod is put together:
+- Market state, the rival roster and remembered sliders are stored in your save through gdt-modAPI, so they survive save/load and restarts.
+- A save from an older Living Industry version is upgraded on load and keeps its market and rivals.
+- Disabling the mod leaves your saves playable; the market data is ignored.
+- The mod never blocks play. If a base-game hook it relies on is missing, for example after a game update, that one feature switches off and logs an error while the rest keeps working.
 
-```
-gdt-livingindustry/
-	package.json       mod manifest (id, version, main entry point)
-	main.js             loads the modules below in order, then initializes them
-	balance/            tunable constants + player-setting defaults, nothing else should hardcode numbers
-	core/               state shape, save/load wiring, app-wide settings store
-	market/             market tick logic + the shared release-effect/cause path
-	rivals/             rival studio roster + generated releases
-	events/             industry news conditions, surfaced through the sidebar/popups
-	integration/        hooks into vanilla release/sales/staff systems (sales modifier, player influence, learn by doing)
-	ui/                 title menu, Market Pulse, status-bar dev progress, focus percentages/marks/snap, release badge, concept hint, instant reviews, tutorial, settings tab
+If something looks wrong, press `F12` to open devtools and look for `[Living Industry]` lines in the console. Errors always appear there. With `CONFIG.debug` on in [balance/constants.js](balance/constants.js), the first line reads `Living Industry vX.Y.Z (state vN, seed N) loaded.` followed by market, rival and news activity.
+
+---
+
+### Roadmap
+
+v0.1.x tunes the market to the game's development cycle, so hot genres stay hot long enough to plan a game around, and runs a full-length balance pass. v0.1.2 then makes the market worth reading: topic trends, rival release announcements, rivals that follow your hits, and forecasts you can pay to sharpen.
+
+After that comes the roguelite layer: **Studio Traits** that build up your company's identity, optional per-game **Project Gambits**, seeded **Industry Conditions** that make each run structurally different, rival founders with genre charts and year-end awards, drafted **Industry Opportunities**, then rivals that react to your build and a run timeline. The full plan is in [ROADMAP.md](ROADMAP.md).
+
+---
+
+### For developers
+
+[main.js](main.js) loads the modules in order and initializes them. [package.json](package.json) is the mod manifest.
+
+| Folder | What lives there |
+|---|---|
+| [balance/](balance/) | Tunable constants and player-setting defaults. Nothing else hardcodes numbers. |
+| [core/](core/) | State shape, save/load wiring, app-wide settings store, seeded randomness |
+| [market/](market/) | Weekly market tick and the shared release-effect and cause path |
+| [rivals/](rivals/) | Rival studio roster and generated releases |
+| [events/](events/) | Industry news conditions, delivered through the sidebar or popups |
+| [integration/](integration/) | Hooks into vanilla sales, releases and staff: sales modifier, player influence, learn by doing |
+| [ui/](ui/) | Title menu, Market Pulse, dev progress, slider percentages, marks and snap, release check, concept hint, instant reviews, tutorial, settings tab |
+
+How a week of market data flows:
+
+```mermaid
+graph TB
+  accTitle: Living Industry market data flow
+  accDescr: Rival releases, player releases and the weekly tick update the per-genre market state, which feeds the sales modifier, the Market Pulse display, industry news and the save.
+  subgraph Inputs
+    Tick["market/: weekly tick, tastes and noise"]
+    Rivals["rivals/: rival releases"]
+    Player["integration/player.js: your releases"]
+  end
+  State[("Per-genre state: demand, tastes, momentum, saturation")]
+  Tick --> State
+  Rivals --> State
+  Player --> State
+  State --> Sales["integration/sales.js: sales modifier"]
+  State --> Pulse["ui/: Market Pulse and concept hint"]
+  State --> News["events/news.js: industry news"]
+  State --> Save["core/: stored in the save"]
 ```
 
-Every number lives in `balance/constants.js` (`LivingIndustry.CONFIG`); set `CONFIG.debug = false`
-to silence the console logging. Each module is isolated: if a base-game function it wraps is
-missing, that module logs an error and switches itself off while the rest keeps running.
+Every number lives in [balance/constants.js](balance/constants.js) as `LivingIndustry.CONFIG`. Set `CONFIG.debug = false` there to silence console logging before sharing a build. Each module is isolated: if a base-game function it wraps is missing, that module logs an error and switches itself off while the rest keeps running.
+
+---
+
+### Documentation map
+
+| Document | What it covers |
+|---|---|
+| [README.md](README.md) | What the mod does, install, settings, and the code layout |
+| [ROADMAP.md](ROADMAP.md) | The design vision, core tension, and planned versions |
+| [balance/constants.js](balance/constants.js) | Every tunable number and setting default, with comments |
+| [package.json](package.json) | Mod manifest: id, version, entry point |
