@@ -2,7 +2,7 @@
 
 Where the mod is and where it is going. Versions are planning buckets, not promises. Features move when their dependencies are ready, and a small system gets expanded only after it has shown it creates good decisions. Everything below (scope, order, version numbers, and names) is a current best guess and will change as design and playtesting turn up new information.
 
-The foundation is shipped through v0.1.1 as described below. Everything after that, including the v0.1.2 market additions, is planned.
+The foundation is shipped through v0.1.1 as described below. Everything after that, including the v0.1.2 market additions and the v0.1.3 presentation pass, is planned.
 
 ## The vision
 
@@ -79,13 +79,37 @@ Every later system (traits, conditions, gambits, rivalries) multiplies the marke
 
 **Done when:** the foundation works through a played campaign, the player can understand its main effects, and the player can name a release where market timing (or a rival announcement) changed the outcome.
 
+### Planned for v0.1.3 - A market you can see
+
+The last version before the roguelite layer. v0.1.2 makes the market worth reading; this version makes it readable at a glance and makes the mod's surfaces feel like part of Game Dev Tycoon rather than a debug overlay sitting on top of it. No new simulation. Everything here is presentation, and the one rule is that the panel must say what the numbers mean without the player ever needing the numbers.
+
+**Market Pulse redesign.** The panel today is text rows (genre, arrow, HOT/COLD, an italic note, a "crowded" flag) with demand, momentum, and saturation hidden in a title tooltip. Replace it with:
+
+- **Four named states instead of two.** Demand and saturation combine into one label per genre so the core tension is literally on the panel: a hot genre with room (*ride the wave*), a hot genre that is crowded (the wave is breaking), a cold genre with room (*the gap*), and a cold, crowded genre (stay away). Names are placeholders until playtesting; the test is that a new player reads the label and knows what it is asking them.
+- **Bars, not numbers.** Demand as a short filled bar, saturation as a second bar or hatching over it, the trend arrow kept. Raw values stay available in an expanded row for players who want them, never as the primary reading.
+- **Short history.** A small sparkline per genre covering roughly the last two years, so the arrow has context ("falling from a long high" reads differently from "dipped last month"). Backed by a small, bounded ring of monthly samples per genre; check save size once it records.
+- **Expand in place.** Clicking a row opens the cause list under it instead of relying on native tooltips, which are slow and easy to miss in the game's embedded browser. One row expanded at a time.
+- **Change is the only animation.** A row highlights briefly when a genre changes state. Weekly ticks are too frequent to animate, and Quiet mode disables the highlight.
+- **Room for v0.1.2.** Reserve a visual slot per row for the forecast and its confidence (a solid arrow for a confident forecast, a hollow or dotted one for an uncertain one) and for an announced rival release (a small marker with the studio name on hover). Those features land in v0.1.2 as text; this version gives them a proper home.
+
+**Feel and fit.**
+
+- One shared stylesheet for every mod surface, matching the vanilla status bar and dialogs: the game's palette, fonts, radius, and border weight. The Studio Identity panel in v0.2.0 and the expanded identity layer in v0.2.3 reuse it rather than inventing their own look.
+- Collapse and expand with a short transition. Remember position (left or right edge, or docked under the status bar) and collapsed state per save.
+- The Game Concept market line becomes a compact version of the same row (state label, bar, arrow) instead of a sentence, so the player sees the same thing in the dialog that they see on the panel.
+- Industry news headlines use the same visual language and stay non-blocking.
+- Never carry information on color alone. Every state has a label and a shape as well as a color, the palette is checked against common color blindness, and the panel stays legible at every uiScale setting.
+- Render only when market state or settings change, as now. The redesign must not add per-tick work.
+
+**Done when:** a player can state every genre's situation from the panel without opening a row or a tooltip, a screenshot of the panel reads as part of the base game, and someone who has never seen the tooltip numbers makes the same genre call as someone who has.
+
 ---
 
 ## v0.2.0 - Studio Traits
 
 Give the player a persistent build: the first roguelite step, before Project Gambits and Industry Conditions layer on top of it.
 
-**Builds on:** the stable v0.1.x market, including the v0.1.2 additions. Traits need a market worth reacting to before they're worth choosing.
+**Builds on:** the stable v0.1.x market, including the v0.1.2 additions, and the v0.1.3 shared visual language. Traits need a market worth reacting to before they're worth choosing.
 
 - The first trait draft follows the first completed game. Further drafts arrive at major milestones.
 - Usually offer three traits and choose one. Offers are seeded, with some influenced by company history and some leaving room for a new direction.
@@ -93,7 +117,7 @@ Give the player a persistent build: the first roguelite step, before Project Gam
 - Traits change priorities, constraints, or opportunities. Numerical effects are fine when they force a decision.
 - **Every trait has a stated, always-on cost** shown on its card next to its benefit. A trait that is pure upside is a stat boost, not a build. Strong combinations should feel powerful; their costs and limitations should remain relevant.
 - Prefer traits that change what the player does over traits that only change how much they earn.
-- A basic **Studio Identity panel** lists active traits with their benefits and costs, so the player can always see their build. The fuller identity and feedback layer follows in v0.2.3.
+- A basic **Studio Identity panel** lists active traits with their benefits and costs, so the player can always see their build. It uses the v0.1.3 stylesheet and row treatment. The fuller identity and feedback layer follows in v0.2.3.
 
 Initial candidates:
 
@@ -153,9 +177,9 @@ Initial candidates:
 
 Ship three starting conditions first. Starting conditions must affect decisions available to an early studio; introduce Blockbuster Economy when larger projects become available. Conditions should last long enough for several project decisions. Genre-specific booms such as an RPG Renaissance remain market developments that can occur within these conditions.
 
-Conditions change during the campaign, not only at the start. At least one later-era condition must put a large, wealthy studio's money or reputation at real risk, so the late game offers stakes and not just a growing balance.
+Conditions change during the campaign, not only at the start, and each transition is signaled early enough to change a project already in planning. Conditions are the tool for varying the early and middle of a run, when money still constrains choices. They are not the tool for late-game stakes: by then the player has millions and everything unlocked, so a condition that threatens or offers money pulls a lever that is already disconnected. Late-game stakes come from named competition (rivals that scale with the era, genre leads, awards in v0.2.5), rivalries (v0.4.0), and the legacy ambition (v0.5.0).
 
-**Done when:** a run's starting condition visibly changes which early decisions make sense, without needing a tooltip to notice it, and in year 20 or later the player still faces decisions with real money at stake.
+**Done when:** a run's starting condition visibly changes which early decisions make sense, without needing a tooltip to notice it, and at least one mid-campaign transition has made a player change a project they were already planning.
 
 ---
 
@@ -208,6 +232,15 @@ Early financial pressure can be represented by a simple, clearly defined perform
 
 Rivals also react to one another. Their stories continue while the player concentrates on their own projects.
 
+### Rivals scale with the era
+
+The late game only stays contested if the top rivals are the player's size. A rival roster that stays small while the player grows turns every scoreboard into a formality by year 15.
+
+- Prominent rivals' project size and quality ceiling track the era, so the leading studios in year 25 release at the same tier as the player.
+- Growth is uneven and personal: a founder's results, ambition, and memories decide who climbs and who stalls, so the leaders in year 25 are not necessarily the leaders in year 5.
+- Rivals that fall far enough can fold, and a replacement studio can appear with a name and a reason, so the roster turns over across a campaign instead of being fixed at the start. Wider character careers (a founder leaving and returning with a new studio) wait for v0.8.
+- Scaling is about who the player is competing against for leads and awards, not about raising the market's sales pressure. Rival growth must not become a tax on the player's sales.
+
 ### Charts and awards
 
 Give the player a scoreboard with names on it before full rivalries exist.
@@ -223,7 +256,7 @@ Give the player a scoreboard with names on it before full rivalries exist.
 - Keep routine activity quiet. Reserve attention for a recognizable person doing something that matters.
 - Preserve people, motives, memories, and pending decisions through save/load.
 
-**Done when:** players recognize several founders, form expectations about them, occasionally see a surprising decision that still makes sense, and can name the rival that leads a genre they care about.
+**Done when:** players recognize several founders, form expectations about them, occasionally see a surprising decision that still makes sense, can name the rival that leads a genre they care about, and in the late game have lost a lead or an award to a rival that grew alongside them.
 
 ---
 
@@ -303,13 +336,14 @@ Moments can offer trait evolution, a replacement, or a lasting commitment. Costs
 
 Make each campaign's identity and consequences easy to revisit.
 
-**Builds on:** every system from v0.2.0 through v0.4.0. This version records and surfaces what they produced; it adds no new mechanics of its own.
+**Builds on:** every system from v0.2.0 through v0.4.0. This version records and surfaces what they produced. Its one new mechanic is the legacy ambition, which exists to give the final stretch of a run a direction.
 
+- **Legacy ambition.** Around the start of the last decade, the player can declare what this run is about: hold every genre lead at once, revive a dead genre, sweep the awards three years running, outlast a named rival, or make the studio's doctrine unmistakable. Chosen from a short list generated from the run so far, never assigned, and never penalized for failing. The ambition is what the end-of-run recap is written around. It answers the late-game problem directly: when money and unlocks no longer constrain, the player needs something to want that cannot be bought.
 - **Run timeline:** releases, booms, saturation crises, conditions, trait choices, gambits, founder decisions, and defining moments.
 - **Causal connections:** show which earlier release, decision, or setback contributed to an important later development.
 - **Studio legacy:** summarize what the company became known for and how its identity changed.
 - **Character histories:** revisit a founder's breakthrough, obsession, retreat, recovery, or departure.
-- **End-of-run recap:** recognize different accomplishments, including financial success, influential games, experimentation, persistence, and successful reinvention.
+- **End-of-run recap:** recognize different accomplishments, including financial success, influential games, experimentation, persistence, and successful reinvention, and tell the story of the legacy ambition, whether it was achieved or not.
 - **Shared seeds:** expose the seed and record the mod version and relevant settings alongside it. Shared starting conditions can produce different histories through player decisions.
 - **Deeper doctrine content:** add selected trait variants, gambits, and opportunities after the base builds have been tested across repeated runs.
 
@@ -317,7 +351,7 @@ Seeded systems must continue consistently across save/load. Keep the external co
 
 If permanent unlocks are added, prioritize extra possibilities and starting options. The first run should already contain a complete, viable experience.
 
-**Done when:** after two campaigns, players can explain why they built different studios and tell different stories about the industry around them.
+**Done when:** after two campaigns, players can explain why they built different studios, tell different stories about the industry around them, and describe what they were chasing in the last ten years of each run.
 
 ---
 
@@ -377,7 +411,7 @@ None of these block the current plan. They're flagged here so a full-length camp
 8. **Protect agency and recovery.** Serious setbacks can change a run's direction. Avoid unanswerable cascades and check combined effects across systems.
 9. **Earn attention.** Explain what matters, keep routine activity quiet, and interrupt only for consequential choices or major moments.
 10. **Prove the smallest fun version.** Test complete interactions in played campaigns before expanding the content pool.
-11. **Keep success contested.** Growth should draw competition, crowding, and higher stakes, so the late game still asks real questions. Pressure comes from the world reacting, not from a flat tax on success.
+11. **Keep success contested.** Growth should draw competition, crowding, and higher stakes, so the late game still asks real questions. Pressure comes from the world reacting, not from a flat tax on success. Once money no longer constrains the player, the stakes are names: genre leads, awards, rivalries, and the legacy the run is remembered for.
 
 The final test for every major update:
 
